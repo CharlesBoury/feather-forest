@@ -10,6 +10,12 @@
 	body {
 		margin: 0;
 		background-color: #b3b3b3;
+		font-family: Inconsolata;
+		display: flex;
+		justify-content: flex-start;
+	}
+	.colonne > * { /* all direct children */
+		margin: 15px;
 	}
 
 	#canvas {
@@ -19,14 +25,262 @@
 		background-color: grey;
 	}
 
+	#Inspector {
+		box-sizing: border-box;
+		width: 280px;
+		min-height: 26px;
+		max-height: 1045px;
+		padding: 8px 10px 0 10px;
+		border: 1px solid rgba(0,0,0,0.1);
+		box-shadow: 0px 2px 3px rgba(0,0,0,0.1);
+
+		overflow: auto;
+		position: relative;
+	}
+
+	#Inspector::before {
+		content: 'Inspector';
+		position: absolute;
+		right: 7px;
+		top: 2px;
+		color: rgba(0,0,0,0.2);
+	}
+		.entityID {
+			color: #797979;
+			font-weight: bold;
+			font-size: 1.2em;
+			margin-top: 5px;
+			margin-bottom: 10px;
+		}
+		.entityID::before {
+			content: "ID:";
+			padding-right: 8px;
+		}
+		.component {
+			padding: 10px;
+			padding-top: 5px;
+			/*border: 1px solid grey;*/
+			box-shadow: 0px 2px 3px rgba(0,0,0,0.1);
+			/*border-radius: 4px;*/
+			margin-bottom: 12px;
+			background-color: lightgrey;
+		}
+			.componentName {
+					color: #b3b3b3;
+					font-weight: bold;
+					font-size: 1.4em;
+					margin-bottom: 8px;
+			}
+			.componentName.Position::before {
+				content: url(images/Editeur/IconComponentPosition.png);
+				padding-right: 5px;
+			}
+			.componentName.Deplacements::before {
+				content: url(images/Editeur/IconComponentDeplacements.png);
+				padding-right: 5px;
+			}
+			.componentName.Outfit::before {
+				content: url(images/Editeur/IconComponentOutfit.png);
+				padding-right: 5px;
+			}
+			.componentName.Timeline::before {
+				content: url(images/Editeur/IconComponentTimeline.png);
+				padding-right: 5px;
+			}
+			.componentName.Collider::before {
+				content: url(images/Editeur/IconComponentCollider.png);
+				padding-right: 5px;
+			}
+			.componentName.Intentions::before {
+				content: url(images/Editeur/IconComponentIntentions.png);
+				padding-right: 5px;
+			}
+			label {
+				-moz-user-select: none;
+				padding-left: 2px;
+			}
+			.param {
+				margin: 3px 2px;
+				background-color: rgba(0,0,0,0.05);
+				display: flex;
+				justify-content: space-between;
+			}
+				i { /* for the warning messages */
+					font-size: 0.8em;
+					opacity: 0.5;
+					text-align: right;
+				}
+
+	#EntitiesList, #SystemsList {
+		width: 280px;
+	}
+	#EntitiesList select {
+		overflow: hidden;
+	}
+
+	#Lists {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	select, input[type=number], input[type=text], input[type="range"]  {
+		box-sizing: border-box;
+		width: 120px;
+		background-color: rgba(0,0,0,0.1);
+		/*text-align: right;*/
+		border: 0px solid white;
+		margin: 0;
+		padding: 1px 5px;
+	}
+
+	input[type=range]::-moz-focus-outer {
+		border: 0;
+	}
+
+	input[type="range"]  {
+		background: none;
+		padding: 0;
+	}
+
+	input[type=range]::-moz-range-thumb {
+		border: none;
+		width: 3px;
+		height: 12px;
+		margin-top: -3px;
+		background: white;
+		border-radius: 0;
+	}
+
+	select {
+		-moz-appearance: none;
+		background-image :url(images/Editeur/downArrow.png);
+		background-repeat: no-repeat;
+		background-position: right center;
+		padding: 0;
+	}
+	select[size] {
+		background-image: none;
+	}
+
+	input[type=number], input[type=text] {
+		-moz-appearance: textfield;
+	}
+
+	
+
+/*	#InspectorTest {
+		box-sizing: border-box;
+		width: 280px;
+		max-height: 900px;
+		padding: 10px;
+		border: 1px solid black;
+
+		overflow: scroll;
+	}
+
+	.param ul {
+		margin: 5px 0;
+		padding-left: 15px;
+	}
+	.param li {
+		list-style: none;
+	}
+	.param li:before {
+		content: "•";
+		padding-right: 8px;
+		color: darkgrey;
+	}
+
 </style>
 
 
 <body>
-	<div id="canvas">
 
+
+	<div class="colonne">
+		<div id="Inspector"></div>
+	</div>
+	<div class="colonne">
+		<div id="canvas"></div>
+
+		<div id="Lists">
+			<div>
+				<div id="EntitiesListHeader">
+					<span class="title"># Entities</span>
+					<button id="createEntity" onclick="createEntity()">+</button>
+					<button id="deleteSelectedEntity" style="float: right" onclick="deleteSelectedEntity(selectedEntityID, entities)">delete</button>
+					<button id="deselectEntity" style="float: right" onclick="deselectEntityToInspect(entities)"">deselect</button>
+				</div>
+				<select id="EntitiesList"></select>
+
+			</div>
+			<div>
+				<div id="SystemsListHeader">Systems</div>
+				<select id="SystemsList"></select>
+			</div>
+			<div>
+				<div id="ComponentsListHeader">Components</div>
+				<select id="ComponentsList"></select>
+			</div>
+		</div>
+
+
+
+<!--		<div class="param">
+			<label for="myColor">myColor</label>
+			<input type="color" id="myColor" value="#957a61">
+		</div>
+
+ 		<div id="InspectorTest">
+			<div id="24028c70">id: 24028c70</div>
+				<div class="component">
+
+					<div class="componentName">componentName</div>
+
+
+					<div class="param">
+						<span>myList</span>
+						<ul class="inputList" id="myList">
+							<li><label for="myList[0]">0</label>
+							<input type="number" id="myList[0]"></li>
+
+							<li><label for="myList[1]">1</label>
+							<input type="number" id="myList[1]"></li>
+
+							<li><span>2</span>
+								<ul class="inputList" id="myList[2]">
+									<li><label for="myList[2][0]">0</label>
+									<input type="string" id="myList[2][0]" value="Hellouille"></li>
+
+									<li><label for="myList[2][1]">1</label>
+									<input type="number" id="myList[2][1]"></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+		</div> -->
+
+	</div>
+
+
+
+
+	<div id="monEntite"></div>
+	<div id="deuxieme"></div>
 	<script src="scripts/libs/playground.js"></script>
 	<script src="scripts/libs/fonctionsCools.js"></script>
+
+	<script src="scripts/interface/interface.js"></script>
+	<script src="scripts/interface/slider.js"></script>
+	<script src="scripts/interface/select.js"></script>
+	<script src="scripts/interface/checkbox.js"></script>
+	<script src="scripts/interface/number.js"></script>
+	<script src="scripts/interface/string.js"></script>
+	<script src="scripts/interface/color.js"></script>
+	<!-- <script src="scripts/interface/list.js"></script> -->
+	<script src="scripts/interface/entityAsHtmlList.js"></script>
 
 	<script src="scripts/ECS/Entity.js"></script>
 	<script src="scripts/ECS/components.js"></script>

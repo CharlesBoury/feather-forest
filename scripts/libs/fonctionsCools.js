@@ -16,6 +16,20 @@ function roundAtDigits (number, digitNumber) {
 }
 
 
+function combinaisons(f, list) {
+	var result = []
+
+	var saut = 0
+	for (var i = 0; i < list.length; i++) {
+		for (var j = 1+saut; j < list.length; j++) {
+			result.push(f(list[i],list[j]))
+		}
+		saut++
+	}
+	return result
+}
+
+
 // get the data as a string
 Object.prototype.toString = function toString() {
 	return JSON.stringify(this, null, 4)

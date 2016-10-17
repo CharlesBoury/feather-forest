@@ -1,6 +1,7 @@
 
 var entities = []
 var monEntite
+var selectedEntityID
 
 
 function getEntityWithID(id, list) {
@@ -14,6 +15,7 @@ function deleteEntityWithID(id,list) {
 function createEntity(entity) {
 	if (entity ===undefined) entity = new Entity()
 	entities.push(entity)
+	createEntitiesList(entities) // ca n'a rien a faire la
 }
 
 var app = new PLAYGROUND.Application({
@@ -25,6 +27,11 @@ var app = new PLAYGROUND.Application({
 
 		entities  = initialWorld
 		monEntite = initialWorld[0]
+
+		createEntitiesList(entities)
+		createSystemsList(systems)
+		createComponentsList(components)
+		selectEntityToInspect(monEntite.id, entities)
 	},
 
 	step: function(dt) { // dt est en secondes (généralement = 0.016)
@@ -91,6 +98,16 @@ var app = new PLAYGROUND.Application({
 					.strokeStyle("darkred")
 					.strokeRect(position.x+collider.x, position.y+collider.y, collider.L, collider.H)
 			}
+
+			// draw pivot for selected entity
+			if (entity.id === selectedEntityID && entity.hasComponents("Position")) {
+				this.layer
+					.fillStyle("red")
+					.fillCircle(
+						position.x,
+						position.y,
+						4)	
+			}
 		}
 
 
@@ -103,5 +120,8 @@ var app = new PLAYGROUND.Application({
 		// 	.fillStyle('white')
 		// 	.fillText("totalTime : "+totalTime.toFixed(3), 5,18)
 		// 	.fillText("cycle : "+cycle, 5,35)
+
+		// document.getElementById('monEntite').innerHTML = '<div>monEntite</div>'+entityAsHTMLList(monEntite)
+
 	}
 })
