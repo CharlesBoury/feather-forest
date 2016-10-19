@@ -1,5 +1,5 @@
 
-var entities = []
+let entities = []
 var monEntite
 var selectedEntityID
 
@@ -15,7 +15,7 @@ function deleteEntityWithID(id,list) {
 function createEntity(entity) {
 	if (entity ===undefined) entity = new Entity()
 	entities.push(entity)
-	createEntitiesList(entities) // ca n'a rien a faire la
+	return entity
 }
 
 var app = new PLAYGROUND.Application({
@@ -28,15 +28,15 @@ var app = new PLAYGROUND.Application({
 		entities  = initialWorld
 		monEntite = initialWorld[0]
 
+		
 		createEntitiesList(entities)
 		createSystemsList(systems)
 		createComponentsList(components)
-		selectEntityToInspect(monEntite.id, entities)
+		selectedEntityID = monEntite.id
 	},
 
 	step: function(dt) { // dt est en secondes (généralement = 0.016)
 
-		// if (entities !== undefined) { // pour les premieres frames avant 'ready' (sinon erreurs)
 
 			// for each entity
 			for (var i=0;i<entities.length;i++) {
@@ -55,19 +55,16 @@ var app = new PLAYGROUND.Application({
 							else if (system === "move"            ) systems[system](entity,dt)
 							else if (system === "collideMessage"  ) systems[system](entity,entities)
 							else if (system === "timeline"        ) systems[system](entity,dt)
-							// oups, ca le fait pour chaque entite
 							else if (system === "replaceIfCollide") systems[system](entity, entities)
 							else                                    systems[system](entity)
 						}
 					}
 				}
 			}
-		// }
 	},
 
 	render: function(dt) {
-		// this.layer.clear(interface.color.myColor)
-		this.layer.clear('white')
+		this.layer.clear('grey')
 
 
 		// render
@@ -81,15 +78,18 @@ var app = new PLAYGROUND.Application({
 			// if entity has position and outfit
 			if (entity.hasComponents("Position", "Outfit")) {
 				var imageName = outfit.imgName
+				var image = this.images[imageName]
 
 				// display its image with specified alpha
 				this.layer
 					.a(outfit.alpha)
+					.align(outfit.pivotX, outfit.pivotY)
 					.drawImage(
-						this.images[imageName],
-						position.x-this.images[imageName].width*outfit.pivotX,
-						position.y-this.images[imageName].height*outfit.pivotY)
+						image,
+						position.x,
+						position.y)
 					.ra() // restore alpha, hopefully 1
+					.realign()
 			}
 
 			// draw collider
@@ -102,11 +102,20 @@ var app = new PLAYGROUND.Application({
 			// draw pivot for selected entity
 			if (entity.id === selectedEntityID && entity.hasComponents("Position")) {
 				this.layer
-					.fillStyle("red")
+					.fillStyle("blue")
+					.a(0.5)
 					.fillCircle(
 						position.x,
 						position.y,
-						4)	
+						10)
+					.ra()
+				if (entity.hasComponents('Outfit')) {
+					this.layer
+						.strokeStyle("rgba(0,0,255,0.3)")
+						.align(outfit.pivotX, outfit.pivotY)
+						.strokeRect(position.x,position.y,image.width, image.height)
+						.realign()
+				}
 			}
 		}
 

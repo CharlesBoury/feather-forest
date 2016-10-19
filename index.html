@@ -9,7 +9,7 @@
 
 	body {
 		margin: 0;
-		background-color: #b3b3b3;
+		background-color: #2e3d37;
 		font-family: Inconsolata;
 		display: flex;
 		justify-content: flex-start;
@@ -37,18 +37,18 @@
 		overflow: auto;
 		position: relative;
 	}
-
+/*
 	#Inspector::before {
 		content: 'Inspector';
 		position: absolute;
 		right: 7px;
 		top: 2px;
 		color: rgba(0,0,0,0.2);
-	}
+	}*/
 		.entityID {
-			color: #797979;
+			/*color: #797979;*/
 			font-weight: bold;
-			font-size: 1.2em;
+			font-size: 14px;
 			margin-top: 5px;
 			margin-bottom: 10px;
 		}
@@ -63,37 +63,51 @@
 			box-shadow: 0px 2px 3px rgba(0,0,0,0.1);
 			/*border-radius: 4px;*/
 			margin-bottom: 12px;
-			background-color: lightgrey;
+			background-color: #3b4e47;
 		}
 			.componentName {
-					color: #b3b3b3;
-					font-weight: bold;
-					font-size: 1.4em;
-					margin-bottom: 8px;
+				color: rgba(0,0,0,0.2);
+				display: flex;
+				justify-content: space-between;
+				font-size: 18px;
+				margin-bottom: 8px;
 			}
-			.componentName.Position::before {
+			button {
+				color: rgba(0,0,0,0.2);
+				border-radius: 0;
+				border: none;
+				background: none;
+				margin:0;
+				padding: 0;
+			}
+			button:hover {
+				color: black;
+				font-weight: bold;
+				cursor: pointer;
+			}
+			.componentName::before {
+				opacity: 0.2;
+				align-items: baseline;
+				/*padding-right: 5px;*/
+
+			}
+			#Position .componentName::before {
 				content: url(images/Editeur/IconComponentPosition.png);
-				padding-right: 5px;
 			}
-			.componentName.Deplacements::before {
+			#Deplacements .componentName::before {
 				content: url(images/Editeur/IconComponentDeplacements.png);
-				padding-right: 5px;
 			}
-			.componentName.Outfit::before {
+			#Outfit .componentName::before {
 				content: url(images/Editeur/IconComponentOutfit.png);
-				padding-right: 5px;
 			}
-			.componentName.Timeline::before {
+			#Timeline .componentName::before {
 				content: url(images/Editeur/IconComponentTimeline.png);
-				padding-right: 5px;
 			}
-			.componentName.Collider::before {
+			#Collider .componentName::before {
 				content: url(images/Editeur/IconComponentCollider.png);
-				padding-right: 5px;
 			}
-			.componentName.Intentions::before {
+			#Intentions .componentName::before {
 				content: url(images/Editeur/IconComponentIntentions.png);
-				padding-right: 5px;
 			}
 			label {
 				-moz-user-select: none;
@@ -106,13 +120,26 @@
 				justify-content: space-between;
 			}
 				i { /* for the warning messages */
-					font-size: 0.8em;
+					font-size: 0.8rem;
 					opacity: 0.5;
 					text-align: right;
 				}
 
 	#EntitiesList, #SystemsList {
 		width: 280px;
+	}
+	#Lists .header {
+		margin-bottom: 4px;
+	}
+	#Lists .header button {
+		background: rgba(0,0,0,0.2);
+		color: black;
+		padding: 0 5px;
+		margin-left: 2px;
+	}
+	#Lists .header button:hover {
+		font-weight: normal;
+		background: rgba(0,0,0,0.1);
 	}
 	#EntitiesList select {
 		overflow: hidden;
@@ -123,7 +150,7 @@
 		justify-content: space-between;
 	}
 
-	select, input[type=number], input[type=text], input[type="range"]  {
+	select, input[type=number], input[type=text], input[type=range], input[type=color]  {
 		box-sizing: border-box;
 		width: 120px;
 		background-color: rgba(0,0,0,0.1);
@@ -132,25 +159,23 @@
 		margin: 0;
 		padding: 1px 5px;
 	}
-
-	input[type=range]::-moz-focus-outer {
-		border: 0;
+	input[type=number], input[type=text] {
+		-moz-appearance: textfield;
 	}
-
-	input[type="range"]  {
-		background: none;
-		padding: 0;
+	input[type=range]::-moz-range-track {
+		background: rgba(0,0,0,0.2);
 	}
-
 	input[type=range]::-moz-range-thumb {
 		border: none;
 		width: 3px;
 		height: 12px;
 		margin-top: -3px;
-		background: white;
+		background: black;
 		border-radius: 0;
 	}
-
+	input[type=color] {
+		padding: 0;
+	}
 	select {
 		-moz-appearance: none;
 		background-image :url(images/Editeur/downArrow.png);
@@ -161,35 +186,29 @@
 	select[size] {
 		background-image: none;
 	}
-
-	input[type=number], input[type=text] {
-		-moz-appearance: textfield;
+	option {
+		padding: 1px 5px;
+	}
+	input[type=range]::-moz-focus-outer {
+		border: 0;
 	}
 
-	
-
-/*	#InspectorTest {
-		box-sizing: border-box;
-		width: 280px;
-		max-height: 900px;
-		padding: 10px;
-		border: 1px solid black;
-
-		overflow: scroll;
+	input[type="range"]  {
+		background: none;
+		padding: 0;
 	}
 
-	.param ul {
-		margin: 5px 0;
-		padding-left: 15px;
+
+
+	select:hover, input[type=number]:hover, input[type=text]:hover  {
+		background-color: rgba(0,0,0,0.2);
+		cursor: pointer;
 	}
-	.param li {
-		list-style: none;
+	input[type="range"]:hover {
+		cursor: pointer;
 	}
-	.param li:before {
-		content: "•";
-		padding-right: 8px;
-		color: darkgrey;
-	}
+	input[type=range]:hover::-moz-range-track {
+		background: rgba(0,0,0,0.4);
 
 </style>
 
@@ -205,62 +224,25 @@
 
 		<div id="Lists">
 			<div>
-				<div id="EntitiesListHeader">
-					<span class="title"># Entities</span>
-					<button id="createEntity" onclick="createEntity()">+</button>
-					<button id="deleteSelectedEntity" style="float: right" onclick="deleteSelectedEntity(selectedEntityID, entities)">delete</button>
-					<button id="deselectEntity" style="float: right" onclick="deselectEntityToInspect(entities)"">deselect</button>
+				<div class="header">
+					<span id="EntitiesCount"># Entities</span>
+					<button id="createEntity" onclick="createEntityInterface()">+</button>
+					<button id="deleteSelectedEntity" style="float: right" onclick="deleteEntity(selectedEntityID)">delete</button>
+					<button id="deselectEntity" style="float: right" onclick="deselectEntity()"">deselect</button>
 				</div>
 				<select id="EntitiesList"></select>
 
 			</div>
 			<div>
-				<div id="SystemsListHeader">Systems</div>
+				<div class="header">Systems</div>
 				<select id="SystemsList"></select>
 			</div>
 			<div>
-				<div id="ComponentsListHeader">Components</div>
+				<div class="header">Components</div>
 				<select id="ComponentsList"></select>
 			</div>
 		</div>
 
-
-
-<!--		<div class="param">
-			<label for="myColor">myColor</label>
-			<input type="color" id="myColor" value="#957a61">
-		</div>
-
- 		<div id="InspectorTest">
-			<div id="24028c70">id: 24028c70</div>
-				<div class="component">
-
-					<div class="componentName">componentName</div>
-
-
-					<div class="param">
-						<span>myList</span>
-						<ul class="inputList" id="myList">
-							<li><label for="myList[0]">0</label>
-							<input type="number" id="myList[0]"></li>
-
-							<li><label for="myList[1]">1</label>
-							<input type="number" id="myList[1]"></li>
-
-							<li><span>2</span>
-								<ul class="inputList" id="myList[2]">
-									<li><label for="myList[2][0]">0</label>
-									<input type="string" id="myList[2][0]" value="Hellouille"></li>
-
-									<li><label for="myList[2][1]">1</label>
-									<input type="number" id="myList[2][1]"></li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-
-				</div>
-		</div> -->
 
 	</div>
 
@@ -272,15 +254,16 @@
 	<script src="scripts/libs/playground.js"></script>
 	<script src="scripts/libs/fonctionsCools.js"></script>
 
-	<script src="scripts/interface/interface.js"></script>
-	<script src="scripts/interface/slider.js"></script>
-	<script src="scripts/interface/select.js"></script>
-	<script src="scripts/interface/checkbox.js"></script>
-	<script src="scripts/interface/number.js"></script>
-	<script src="scripts/interface/string.js"></script>
-	<script src="scripts/interface/color.js"></script>
-	<!-- <script src="scripts/interface/list.js"></script> -->
-	<script src="scripts/interface/entityAsHtmlList.js"></script>
+
+	<script src="scripts/interface2/interface.js"></script>
+	<script src="scripts/interface2/slider.js"></script>
+	<script src="scripts/interface2/checkbox.js"></script>
+	<script src="scripts/interface2/number.js"></script>
+	<script src="scripts/interface2/select.js"></script>
+	<script src="scripts/interface2/string.js"></script>
+	<script src="scripts/interface2/color.js"></script>
+
+
 
 	<script src="scripts/ECS/Entity.js"></script>
 	<script src="scripts/ECS/components.js"></script>

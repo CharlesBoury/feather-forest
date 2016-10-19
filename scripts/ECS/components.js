@@ -22,6 +22,7 @@ var components = {
 					y: 1
 				}
 			}
+			Object.defineProperty(this, "meta", {enumerable: false})
 		}
 	},
 
@@ -48,6 +49,7 @@ var components = {
 				direction: ['Bas','BasDroite','Droite','HautDroite','Haut', 'HautGauche','Gauche', 'BasGauche'],
 			}
 		}
+		Object.defineProperty(this, "meta", {enumerable: false})
 		Object.defineProperty(this, 'horizontalSign', {
 			// enumerable: true, // a l'air de rentrer en conflit avec get&set du bind interface
 			enumerable: false,
@@ -101,6 +103,7 @@ var components = {
 				alpha:   0.01
 			}
 		}
+		Object.defineProperty(this, "meta", {enumerable: false})
 	},
 
 
@@ -138,6 +141,7 @@ var components = {
 				currentAnim: ['Defaut']
 			}
 		}
+		Object.defineProperty(this, "meta", {enumerable: false})
 	},
 
 
@@ -158,6 +162,7 @@ var components = {
 				canBePushed: "checkbox",
 			}
 		}
+		Object.defineProperty(this, "meta", {enumerable: false})
 	},
 
 
@@ -188,12 +193,6 @@ var components = {
 				cerveau: ["manette", "rien"]
 			},
 		}
+		Object.defineProperty(this, "meta", {enumerable: false})
 	},
 }
-
-
-
-
-
-
-
