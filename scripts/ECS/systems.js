@@ -104,7 +104,7 @@ var systems = {
 		entity.components.Collider.collidedWith = []
 
 		// then attach new messages if collided
-		var entitiesWithCollider = allEntities.filter(x=>x.hasComponents("Collider"))
+		var entitiesWithCollider = allEntities.filter(x=>x.hasComponents("Position", "Collider"))
 		entity.components.Collider.collidedWith = collidingInfos(entity, entitiesWithCollider)
 
 	},
