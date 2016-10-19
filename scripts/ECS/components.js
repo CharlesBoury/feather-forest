@@ -195,4 +195,17 @@ var components = {
 		}
 		Object.defineProperty(this, "meta", {enumerable: false})
 	},
+
+
+	Camera: function Camera(following) {
+		this.following = following  === undefined ? "" : following
+		this.bgColor = "#586d65"
+		this.meta = {
+			types: {
+				following: "string",
+				bgColor: "color"
+			}
+		}
+		Object.defineProperty(this, "meta", {enumerable: false})
+	}
 }

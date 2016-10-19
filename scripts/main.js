@@ -2,6 +2,7 @@
 let entities = []
 var monEntite
 var selectedEntityID
+let camera
 
 
 function getEntityWithID(id, list) {
@@ -27,6 +28,8 @@ var app = new PLAYGROUND.Application({
 
 		entities  = initialWorld
 		monEntite = initialWorld[0]
+		camera = entities.filter(x=>x.hasComponents('Camera'))[0]
+		camera.components.Camera.following = monEntite.id
 
 		
 		createEntitiesList(entities)
@@ -64,7 +67,9 @@ var app = new PLAYGROUND.Application({
 	},
 
 	render: function(dt) {
-		this.layer.clear('grey')
+		this.layer.clear(camera.components.Camera.bgColor)
+
+		let cameraPosition = camera.components.Position
 
 
 		// render
@@ -72,6 +77,9 @@ var app = new PLAYGROUND.Application({
 			var entity = entities[i]
 
 			var position = entity.components.Position
+			let screenPos = {
+				x:position.x-cameraPosition.x,
+				y:position.y-cameraPosition.y}
 			var outfit   = entity.components.Outfit
 			var collider = entity.components.Collider
 
@@ -86,8 +94,8 @@ var app = new PLAYGROUND.Application({
 					.align(outfit.pivotX, outfit.pivotY)
 					.drawImage(
 						image,
-						position.x,
-						position.y)
+						screenPos.x,
+						screenPos.y)
 					.ra() // restore alpha, hopefully 1
 					.realign()
 			}
@@ -96,7 +104,7 @@ var app = new PLAYGROUND.Application({
 			if (entity.hasComponents("Position", "Collider")) {
 				this.layer
 					.strokeStyle("darkred")
-					.strokeRect(position.x+collider.x, position.y+collider.y, collider.L, collider.H)
+					.strokeRect(screenPos.x+collider.x, screenPos.y+collider.y, collider.L, collider.H)
 			}
 
 			// draw pivot for selected entity
@@ -105,15 +113,15 @@ var app = new PLAYGROUND.Application({
 					.fillStyle("blue")
 					.a(0.5)
 					.fillCircle(
-						position.x,
-						position.y,
+						screenPos.x,
+						screenPos.y,
 						10)
 					.ra()
 				if (entity.hasComponents('Outfit')) {
 					this.layer
 						.strokeStyle("rgba(0,0,255,0.3)")
 						.align(outfit.pivotX, outfit.pivotY)
-						.strokeRect(position.x,position.y,image.width, image.height)
+						.strokeRect(screenPos.x,screenPos.y,image.width, image.height)
 						.realign()
 				}
 			}

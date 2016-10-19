@@ -46,3 +46,9 @@ initialWorld.push(
 	.addComponent(new components.Position(-81,762))
 	.addComponent(new components.Outfit('Decors/Foreground2',0,1))
 )
+
+initialWorld.push(
+	new Entity()
+	.addComponent(new components.Position(0,0))
+	.addComponent(new components.Camera())
+)
