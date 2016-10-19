@@ -43,3 +43,6 @@ Object.defineProperty(Object.prototype, 'toString', {
 Object.defineProperty(Object.prototype, 'print', {
 	enumerable:false
 })
+
+
+// function pouet() {console.log('pouet')}
