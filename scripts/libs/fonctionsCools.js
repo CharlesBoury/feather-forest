@@ -45,4 +45,7 @@ Object.defineProperty(Object.prototype, 'print', {
 })
 
 
-function pouet() {console.log('pouet')}
+function pouet(message) {
+	if (message === undefined) message = 'pouet'
+	console.log(message)
+}
