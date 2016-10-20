@@ -21,7 +21,15 @@ var components = {
 					x: 1,
 					y: 1
 				}
+			},
+			this.getScreenPos = function(cameraEntity) {
+				let cameraPosition = cameraEntity.components.Position
+				return {
+					x:this.x-cameraPosition.x,
+					y:this.y-cameraPosition.y
+				}
 			}
+
 			Object.defineProperty(this, "meta", {enumerable: false})
 		}
 	},

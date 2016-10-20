@@ -120,10 +120,17 @@ function deleteInspector() {
 function createEntityVue(entity) {
 	// console.log(`creating vue for ${entity.id}...`)
 	let entityIDnode = document.createElement('div')
-	entityIDnode.className = "entityID"
-	entityIDnode.id = entity.id
-	entityIDnode.innerHTML = entity.id
-	inspectorNode.insertAdjacentElement('afterbegin', entityIDnode)
+		entityIDnode.className = "entityID"
+		entityIDnode.id = entity.id
+		entityIDnode.innerHTML = entity.id
+		inspectorNode.insertAdjacentElement('afterbegin', entityIDnode)
+
+	let componentsNode = document.createElement('div')
+		componentsNode.id = "components"
+		inspectorNode.insertAdjacentElement('beforeend', componentsNode)
+
+	insertButtonAddComponent()
+
 	for (component in entity.components) {
 		createComponentVue(entity.components[component])
 	}
@@ -137,12 +144,14 @@ function deleteEntityVue(entity) {
 	inspectorNode.innerHTML = ""
 }
 
-function createComponentVue(component) {
+function createComponentVue(component) {	
 	// console.log(`creating vue for ${component.constructor.name}...`)
 	let componentNode = document.createElement('div')
 	componentNode.className = "component"
 	componentNode.id        = component.constructor.name
-	inspectorNode.insertAdjacentElement('beforeend', componentNode)
+	document
+		.getElementById('components')
+		.insertAdjacentElement('beforeend', componentNode)
 
 	let componentNameNode = document.createElement('div')
 	componentNameNode.className = "componentName"
@@ -151,7 +160,7 @@ function createComponentVue(component) {
 	button. innerHTML = "x"
 	button.className = "deleteComponent"
 	componentNameNode.insertAdjacentElement('beforeend', button)
-	button.addEventListener("click", function(e){deleteComponent(component, e)})
+	button.addEventListener("click", function(){deleteComponentFromVue(component)})
 	
 	componentNode.insertAdjacentElement('afterbegin', componentNameNode)
 
@@ -166,7 +175,10 @@ function deleteComponentVue(component) {
 	for (propertyName in component) {
 		deletePropertyVue(component, propertyName)
 	}
-	deleteNodeWithID(component.constructor.name)
+	if (component !== undefined) {
+		deleteNodeWithID(component.constructor.name)
+
+	}
 }
 
 
@@ -230,8 +242,64 @@ function createComponentsList(components) {
 
 
 
-function deleteComponent(component, e) {
+function deleteComponentFromVue(component) {
 	let entity = getEntityWithID(selectedEntityID, entities)
-	entity.removeComponent(component.constructor.name)
-	deleteComponentVue(component)
+	if (entity !== undefined) {
+		entity.removeComponent(component.constructor.name)
+		deleteComponentVue(component)
+	}
+}
+
+function createComponentFromVue(component) {
+	let entity = getEntityWithID(selectedEntityID, entities)
+	let componentName = component.constructor.name
+	if (entity !== undefined && !entity.hasComponents(componentName)) {
+		entity.addComponent(component)
+		createComponentVue(entity.components[componentName])
+	}
+}
+
+
+function createNodeChooseComponent() {
+	let entity = getEntityWithID(selectedEntityID, entities)
+	let missingComponents = []
+	if (entity !== undefined) {
+		for (component in components) {
+			if (!entity.hasComponents(component)) {
+				missingComponents.push(component)
+			}
+		}
+		let selectComponentNode = document.createElement('select')
+		for (c of missingComponents) {
+			selectComponentNode.innerHTML += `<option>${c}</option>`
+		}
+		deleteNodeWithID("addComponent")
+
+		let validerNode = document.createElement('button')
+			validerNode.innerHTML = "ok"
+			validerNode.addEventListener('click', function() {
+
+				let chosenComponentName = document.querySelector("#addComponent select").value
+				createComponentFromVue(new components[chosenComponentName]())
+				deleteNodeWithID("addComponent")
+				insertButtonAddComponent()
+			})
+
+		let addComponentEtape2Node = document.createElement('div')
+		addComponentEtape2Node.id = "addComponent"
+		addComponentEtape2Node.insertAdjacentElement('beforeend', selectComponentNode)
+		addComponentEtape2Node.insertAdjacentElement('beforeend', validerNode)
+
+
+		inspectorNode.insertAdjacentElement('beforeend', addComponentEtape2Node)
+	}
+}
+
+
+function insertButtonAddComponent() {
+	let addComponentNode = document.createElement('button')
+	addComponentNode.id = "addComponent"
+	addComponentNode.innerHTML = "new component"
+	addComponentNode.addEventListener('click', function(){createNodeChooseComponent()})
+	inspectorNode.insertAdjacentElement('beforeend', addComponentNode)
 }
