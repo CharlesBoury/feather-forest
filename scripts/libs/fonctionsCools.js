@@ -45,4 +45,4 @@ Object.defineProperty(Object.prototype, 'print', {
 })
 
 
-// function pouet() {console.log('pouet')}
+function pouet() {console.log('pouet')}
