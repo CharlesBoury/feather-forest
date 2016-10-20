@@ -86,18 +86,25 @@ var app = new PLAYGROUND.Application({
 			// if entity has position and outfit
 			if (entity.hasComponents("Position", "Outfit")) {
 				var imageName = outfit.imgName
-				var image = this.images[imageName]
 
-				// display its image with specified alpha
-				this.layer
-					.a(outfit.alpha)
-					.align(outfit.pivotX, outfit.pivotY)
-					.drawImage(
-						image,
-						screenPos.x,
-						screenPos.y)
-					.ra() // restore alpha, hopefully 1
-					.realign()
+				var image = this.images[imageName]
+				if (image !==undefined) {
+					// display its image with specified alpha
+					this.layer
+						.a(outfit.alpha)
+						.align(outfit.pivotX, outfit.pivotY)
+						.drawImage(
+							image,
+							screenPos.x,
+							screenPos.y)
+						.ra() // restore alpha, hopefully 1
+						.realign()
+				} else {
+					this.layer
+						.font("14px Arial")
+						.fillStyle('blue')
+						.fillText("imgName introuvable", screenPos.x,screenPos.y)
+				}
 			}
 
 			// draw collider
@@ -117,7 +124,7 @@ var app = new PLAYGROUND.Application({
 						screenPos.y,
 						10)
 					.ra()
-				if (entity.hasComponents('Outfit')) {
+				if (entity.hasComponents('Outfit') && image !== undefined) {
 					this.layer
 						.strokeStyle("rgba(0,0,255,0.3)")
 						.align(outfit.pivotX, outfit.pivotY)
