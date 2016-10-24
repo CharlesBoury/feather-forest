@@ -14,7 +14,9 @@ function deleteEntityWithID(id,list) {
 }
 
 function createEntity(entity) {
-	if (entity ===undefined) entity = new Entity()
+	if (entity === undefined) {
+		entity = new Entity().addComponent(new components.Position())
+	}
 	entities.push(entity)
 	return entity
 }
