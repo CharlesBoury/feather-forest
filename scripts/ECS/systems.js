@@ -196,15 +196,46 @@ var systems = {
 		if (outfit !== undefined) syncOutfitFromTimeline(entity)
 	},
 
+	cameraFollow: function(entity) {
+		let idToFollow = entity.components.Camera.following
+		// B c'est l'entite à suivre
+		let b = getEntityWithID(idToFollow, entities)
+
+		if (b.hasComponents('Position','Outfit')) {
+
+			let positionB = b.components.Position
+			let outfitB   = b.components.Outfit
+
+			let screenPos  = positionB.getScreenPos(entity)
+			// let visibleBox = getImageDimensionFromName(entityToFollow.Components.Outfit.imgName)
+
+			if (screenPos.x >= screen.width) {
+				pouet('droite')
+				entity.components.Position.x += screen.width
+			} else if (screenPos.x <= 0) {
+				pouet('gauche')
+				entity.components.Position.x -= screen.width
+			} else if (screenPos.y >= screen.height) {
+				pouet('bas')
+				entity.components.Position.y += screen.height
+			} else if (screenPos.y < 0) {
+				pouet('haut')
+				entity.components.Position.y -= screen.height
+			}
+		}
+
+	},
+
 	neededComponents: {
-		userInput:                     ["Intentions"                                                ],
-		setDeplacementsFromIntentions: ["Intentions", "Deplacements"                                ],
-		moveMessage:                   [              "Deplacements","Position"                     ],
-		move:                          [              "Deplacements","Position"                     ],
-		collideMessage:                [                             "Position",          "Collider"],
-		replaceIfCollide:              [              "Deplacements","Position",          "Collider"],
-		setAnimFromDeplacements:       [              "Deplacements",           "Timeline"          ],
-		timeline:                      [                                        "Timeline"          ],
+		userInput:                     ["Intentions"                                                        ],
+		setDeplacementsFromIntentions: ["Intentions", "Deplacements"                                        ],
+		moveMessage:                   [              "Deplacements","Position"                             ],
+		move:                          [              "Deplacements","Position"                             ],
+		collideMessage:                [                             "Position",          "Collider"        ],
+		replaceIfCollide:              [              "Deplacements","Position",          "Collider"        ],
+		setAnimFromDeplacements:       [              "Deplacements",           "Timeline"                  ],
+		timeline:                      [                                        "Timeline"                  ],
+		cameraFollow:                  [                             "Position",                    "Camera"],
 	},
 }
 

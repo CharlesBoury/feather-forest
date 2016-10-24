@@ -3,6 +3,7 @@ let entities = []
 var monEntite
 var selectedEntityID
 let camera
+// let screen
 
 
 function getEntityWithID(id, list) {
@@ -33,6 +34,10 @@ var app = new PLAYGROUND.Application({
 		camera = entities.filter(x=>x.hasComponents('Camera'))[0]
 		camera.components.Camera.following = monEntite.id
 
+		screen = {
+			width:this.width,
+			height: this.height
+		}
 		
 		createEntitiesList(entities)
 		createSystemsList(systems)

@@ -19,8 +19,8 @@ initialWorld[0].components.Timeline.currentAnim = 'Bas'
 
 initialWorld.push(
 	new Entity()
-	.addComponent(new components.Position(850,400))
-	.addComponent(new components.Collider(-100,-100,200,200))
+	.addComponent(new components.Position(0,670))
+	.addComponent(new components.Collider(0,0,2400,10))
 )
 
 initialWorld.push(
