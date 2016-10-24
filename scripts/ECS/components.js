@@ -30,6 +30,7 @@ var components = {
 				}
 			}
 
+			Object.defineProperty(this, "getScreenPos", {enumerable: false})
 			Object.defineProperty(this, "meta", {enumerable: false})
 		}
 	},
@@ -168,6 +169,10 @@ var components = {
 				L: "number",
 				H: "number",
 				canBePushed: "checkbox",
+			},
+			min: {
+				L:0,
+				H:0
 			}
 		}
 		Object.defineProperty(this, "meta", {enumerable: false})
