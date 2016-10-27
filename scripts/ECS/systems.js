@@ -31,7 +31,7 @@ var systems = {
 	setDeplacementsFromIntentions: function(entity) {
 
 		// should have
-		var intentions  = entity.components.Intentions
+		var intentions   = entity.components.Intentions
 		var deplacements = entity.components.Deplacements
 
 		// choose direction
@@ -210,26 +210,27 @@ var systems = {
 		// B c'est l'entite à suivre
 		let b = getEntityWithID(idToFollow, entities)
 
-		if (b.hasComponents('Position','Outfit')) {
+		if (b !== undefined) {
+			if (b.hasComponents('Position')) {
 
-			let positionB = b.components.Position
-			let outfitB   = b.components.Outfit
+				let positionB = b.components.Position
 
-			let screenPos  = positionB.getScreenPos(entity)
-			// let visibleBox = getImageDimensionFromName(entityToFollow.Components.Outfit.imgName)
+				let screenPos  = positionB.getScreenPos(entity)
+				// let visibleBox = getImageDimensionFromName(entityToFollow.Components.Outfit.imgName)
 
-			if (screenPos.x >= screen.width) {
-				pouet('droite')
-				entity.components.Position.x += screen.width
-			} else if (screenPos.x <= 0) {
-				pouet('gauche')
-				entity.components.Position.x -= screen.width
-			} else if (screenPos.y >= screen.height) {
-				pouet('bas')
-				entity.components.Position.y += screen.height
-			} else if (screenPos.y < 0) {
-				pouet('haut')
-				entity.components.Position.y -= screen.height
+				if (screenPos.x >= screen.width) {
+					pouet('droite')
+					entity.components.Position.x += screen.width
+				} else if (screenPos.x <= 0) {
+					pouet('gauche')
+					entity.components.Position.x -= screen.width
+				} else if (screenPos.y >= screen.height) {
+					pouet('bas')
+					entity.components.Position.y += screen.height
+				} else if (screenPos.y < 0) {
+					pouet('haut')
+					entity.components.Position.y -= screen.height
+				}
 			}
 		}
 
