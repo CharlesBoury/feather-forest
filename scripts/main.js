@@ -172,8 +172,6 @@ var app = new PLAYGROUND.Application({
 
 
 
-		// timeline
-		// drawTimeline(this, 600, 8, monEntite.components.Timeline.time)
 
 		// autres
 		// this.layer
@@ -184,5 +182,20 @@ var app = new PLAYGROUND.Application({
 
 		// document.getElementById('monEntite').innerHTML = '<div>monEntite</div>'+entityAsHTMLList(monEntite)
 
+	}
+})
+
+var timelinePanel = new PLAYGROUND.Application({
+
+	container: "#TimelinePanel",
+
+	render: function(dt) {
+		this.layer.clear("#25312c")
+		let entity = getSelectedEntity()
+		if (entity === undefined) return
+		if (entity.hasComponents('Timeline')) {
+			// timeline
+			drawTimeline(this, 600, 8,entity.components.Timeline.time)
+		}
 	}
 })
