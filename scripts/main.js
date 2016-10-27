@@ -2,8 +2,7 @@
 let entities = []
 var monEntite
 var selectedEntityID
-let camera
-// let screen
+let screen
 
 
 function getEntityWithID(id, list) {
@@ -36,8 +35,9 @@ var app = new PLAYGROUND.Application({
 
 		entities  = initialWorld
 		monEntite = initialWorld[0]
-		camera = entities.filter(x=>x.hasComponents('Camera'))[0]
-		camera.components.Camera.following = monEntite.id
+		// camera follow monEntite
+		let camera = entities.filter(x=>x.hasComponents('Camera'))[0]
+			camera.components.Camera.following = monEntite.id
 
 		screen = {
 			width:this.width,
@@ -47,7 +47,7 @@ var app = new PLAYGROUND.Application({
 		createEntitiesList(entities)
 		createSystemsList(systems)
 		createComponentsList(components)
-		selectedEntityID = monEntite.id
+		selectedEntityID = monEntite.id // creates Inspector
 	},
 
 	step: function(dt) { // dt est en secondes (généralement = 0.016)
@@ -79,21 +79,44 @@ var app = new PLAYGROUND.Application({
 	},
 
 	render: function(dt) {
+
+		// render
+		//    need an entity with camera and position
+		//    each Entity needs position
+
+
+
+		let camera = entities.filter(x=>x.hasComponents('Camera'))[0]
+		if (camera === undefined) {
+			this.layer
+				.clear("black")
+				.font("14px Arial")
+				.fillStyle('white')
+				.fillText("No camera", 5,18)
+			return			
+		}
+		if (!camera.hasComponents('Position')) {
+			this.layer
+				.clear("black")
+				.font("14px Arial")
+				.fillStyle('white')
+				.fillText("camera needs a Position component", 5,18)
+			return			
+		}
 		this.layer.clear(camera.components.Camera.bgColor)
 
-
-		if (camera !== undefined) {
-		// render
 		for (var i = 0; i < entities.length; i++) {
-			var entity = entities[i]
+		let entity = entities[i]
+		if (entity.hasComponents("Position")) {
+			//////////////////////////////////////////////////////////////////////////////
+
 			var position = entity.components.Position
 			var outfit   = entity.components.Outfit
-			var collider = entity.components.Collider
 
-			// if entity has position and outfit
-			if (entity.hasComponents("Position", "Outfit")) {
+			// if entity has outfit
+			if (entity.hasComponents("Outfit")) {
+			var image = this.images[outfit.imgName]
 
-				var image = this.images[outfit.imgName]
 				if (image !==undefined) {
 					// display its image with specified alpha
 					this.layer
@@ -106,7 +129,7 @@ var app = new PLAYGROUND.Application({
 						.ra() // restore alpha, hopefully 1
 						.realign()
 
-					// display image sides
+					// display image box
 					if (entity.id === selectedEntityID) {
 						this.layer
 							.strokeStyle("rgba(0,0,255,0.3)")
@@ -115,6 +138,7 @@ var app = new PLAYGROUND.Application({
 							.realign()
 					}
 				} else {
+					// if imgName doesn't correspond to a particular asset
 					this.layer
 						.font("14px Arial")
 						.fillStyle('blue')
@@ -123,14 +147,15 @@ var app = new PLAYGROUND.Application({
 			}
 
 			// display collider
-			if (entity.hasComponents("Position", "Collider")) {
+			if (entity.hasComponents("Collider")) {
+				let collider = entity.components.Collider
 				this.layer
 					.strokeStyle("darkred")
 					.strokeRect(position.getScreenPos(camera).x+collider.x, position.getScreenPos(camera).y+collider.y, collider.L, collider.H)
 			}
 
 			// display pivot for selected entity
-			if (entity.hasComponents("Position") && entity.id === selectedEntityID) {
+			if (entity.id === selectedEntityID) {
 				this.layer
 					.fillStyle("blue")
 					.a(0.5)
@@ -140,6 +165,7 @@ var app = new PLAYGROUND.Application({
 						10)
 					.ra()
 			}
+			//////////////////////////////////////////////////////////////////////////////
 		}
 		}
 
