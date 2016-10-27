@@ -29,7 +29,7 @@ function createEntity(entity) {
 
 var app = new PLAYGROUND.Application({
 
-	container: "#canvas",
+	container: "#Canvas",
 
 	create: function() {
 		this.loadImages.apply(this, assets)

@@ -302,20 +302,20 @@ function createNodeChooseComponent() {
 		for (c of missingComponents) {
 			selectComponentNode.innerHTML += `<option>${c}</option>`
 		}
-		deleteNodeWithID("addComponent")
+		deleteNodeWithID("AddComponent")
 
 		let validerNode = document.createElement('button')
 			validerNode.innerHTML = "ok"
 			validerNode.addEventListener('click', function() {
 
-				let chosenComponentName = document.querySelector("#addComponent select").value
+				let chosenComponentName = document.querySelector("#AddComponent select").value
 				createComponentFromVue(new components[chosenComponentName]())
-				deleteNodeWithID("addComponent")
+				deleteNodeWithID("AddComponent")
 				insertButtonAddComponent()
 			})
 
 		let addComponentEtape2Node = document.createElement('div')
-		addComponentEtape2Node.id = "addComponent"
+		addComponentEtape2Node.id = "AddComponent"
 		addComponentEtape2Node.insertAdjacentElement('beforeend', selectComponentNode)
 		addComponentEtape2Node.insertAdjacentElement('beforeend', validerNode)
 
@@ -327,7 +327,7 @@ function createNodeChooseComponent() {
 
 function insertButtonAddComponent() {
 	let addComponentNode = document.createElement('button')
-	addComponentNode.id = "addComponent"
+	addComponentNode.id = "AddComponent"
 	addComponentNode.innerHTML = "new component"
 	addComponentNode.addEventListener('click', function(){createNodeChooseComponent()})
 	inspectorNode.insertAdjacentElement('beforeend', addComponentNode)
