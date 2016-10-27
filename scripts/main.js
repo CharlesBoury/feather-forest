@@ -52,30 +52,27 @@ var app = new PLAYGROUND.Application({
 
 	step: function(dt) { // dt est en secondes (généralement = 0.016)
 
-
+		// for each system
+		for (system in systems) {
 			// for each entity
 			for (var i=0;i<entities.length;i++) {
+
+
 				var entity = entities[i]
+				// if entity has needed components
+				if (entity.hasComponents.apply(entity, systems.neededComponents[system])) {
 
-				// for each system
-				for (system in systems) {
-					if (system !== "neededComponents") {
-
-						// if entity has needed components
-						if (entity.hasComponents.apply(entity, systems.neededComponents[system])) {
-
-							// operate system with good arguments
-							if      (system === "userInput"       ) systems[system](entity, this.keyboard.keys)
-							else if (system === "moveMessage"     ) systems[system](entity,dt)
-							else if (system === "move"            ) systems[system](entity,dt)
-							else if (system === "collideMessage"  ) systems[system](entity,entities)
-							else if (system === "timeline"        ) systems[system](entity,dt)
-							else if (system === "replaceIfCollide") systems[system](entity, entities)
-							else                                    systems[system](entity)
-						}
-					}
+					// operate system with good arguments
+					if      (system === "userInput"       ) systems[system](entity, this.keyboard.keys)
+					else if (system === "moveMessage"     ) systems[system](entity,dt)
+					else if (system === "move"            ) systems[system](entity,dt)
+					else if (system === "collideMessage"  ) systems[system](entity,entities)
+					else if (system === "timeline"        ) systems[system](entity,dt)
+					else if (system === "replaceIfCollide") systems[system](entity, entities)
+					else                                    systems[system](entity)
 				}
 			}
+		}
 	},
 
 	render: function(dt) {
