@@ -8,41 +8,49 @@ var anims = {
 		properties:[
 			{position:0/8, img:'Gabrielle/Bas'},
 		],
+		actions:[]
 	},
 	BasDroiteStill: {
 		properties:[
 			{position:0/8, img:'Gabrielle/BasDroite'},
 		],
+		actions:[]
 	},
 	DroiteStill: {
 		properties:[
 			{position:0/8, img:'Gabrielle/Droite'},
 		],
+		actions:[]
 	},
 	HautDroiteStill: {
 		properties:[
 			{position:0/8, img:'Gabrielle/HautDroite'},
 		],
+		actions:[]
 	},
 	HautStill: {
 		properties:[
 			{position:0/8, img:'Gabrielle/Haut'},
 		],
+		actions:[]
 	},
 	HautGaucheStill: {
 		properties:[
 			{position:0/8, img:'Gabrielle/HautGauche'},
 		],
+		actions:[]
 	},
 	GaucheStill: {
 		properties:[
 			{position:0/8, img:'Gabrielle/Gauche'},
 		],
+		actions:[]
 	},
 	BasGaucheStill: {
 		properties:[
 			{position:0/8, img:'Gabrielle/BasGauche'},
 		],
+		actions:[]
 	},
 
 
