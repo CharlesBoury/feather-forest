@@ -1,4 +1,3 @@
-# Windows image file caches
 
 # =========================
 # Windows
@@ -13,3 +12,13 @@ Thumbs.db
 
 .DS_Store
 ._*
+
+
+# =========================
+# Project specific
+# =========================
+
+*.psd
+brouillon.html
+devlog.txt
+
