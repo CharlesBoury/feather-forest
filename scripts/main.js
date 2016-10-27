@@ -14,6 +14,11 @@ function deleteEntityWithID(id,list) {
 	entities = list.filter(x => x['id'] !== id)
 }
 
+function getSelectedEntity() {
+	return getEntityWithID(selectedEntityID, entities)
+}
+
+
 function createEntity(entity) {
 	if (entity === undefined) {
 		entity = new Entity().addComponent(new components.Position())

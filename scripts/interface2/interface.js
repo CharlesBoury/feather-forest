@@ -110,7 +110,7 @@ function createInspectorFor(entityID) {
 function deleteInspector() {
 	if (inspectorNode.innerHTML !== "") {
 		// console.log("deleting inspector...")
-		let entityID = document.getElementsByClassName("entityID")[0].id
+		let entityID = document.querySelector(".entityID").id
 		// console.log("    id of entity: "+entityID)
 		deleteEntityVue(getEntityWithID(entityID, entities))
 	}
@@ -144,11 +144,13 @@ function deleteEntityVue(entity) {
 	inspectorNode.innerHTML = ""
 }
 
-function createComponentVue(component) {	
+function createComponentVue(component) {
 	// console.log(`creating vue for ${component.constructor.name}...`)
-	let componentNode = document.createElement('div')
-	componentNode.className = "component"
-	componentNode.id        = component.constructor.name
+	let componentNode           = document.createElement('div')
+		let componentIsEnabled = getSelectedEntity().enabledComponents[component.constructor.name]
+		if(componentIsEnabled) { componentNode.className = "component"          }
+		else                   { componentNode.className = "component disabled" }
+		componentNode.id        = component.constructor.name
 	document
 		.getElementById('components')
 		.insertAdjacentElement('beforeend', componentNode)
@@ -156,11 +158,25 @@ function createComponentVue(component) {
 	let componentNameNode = document.createElement('div')
 	componentNameNode.className = "componentName"
 	componentNameNode.innerHTML = component.constructor.name
-	let button = document.createElement('button')
-	button. innerHTML = "x"
-	button.className = "deleteComponent"
-	componentNameNode.insertAdjacentElement('beforeend', button)
-	button.addEventListener("click", function(){deleteComponentFromVue(component)})
+
+	let disableButton = document.createElement('button')
+		disableButton.innerHTML = "z"
+		disableButton.className = "disableComponent"
+		disableButton.addEventListener("click", function(){
+			disableComponentFromVue(component)
+		})
+
+	let deleteButton = document.createElement('button')
+		deleteButton. innerHTML = "x"
+		deleteButton.className = "deleteComponent"
+		deleteButton.addEventListener("click", function(){
+			deleteComponentFromVue(component)
+		})
+
+	let buttons = document.createElement('div')
+		buttons.insertAdjacentElement('beforeend', disableButton)
+		buttons.insertAdjacentElement('beforeend', deleteButton)
+		componentNameNode.insertAdjacentElement('beforeend', buttons)
 	
 	componentNode.insertAdjacentElement('afterbegin', componentNameNode)
 
@@ -247,6 +263,19 @@ function deleteComponentFromVue(component) {
 	if (entity !== undefined) {
 		entity.removeComponent(component.constructor.name)
 		deleteComponentVue(component)
+	}
+}
+
+function disableComponentFromVue(component) {
+	let entity = getEntityWithID(selectedEntityID, entities)
+	if (entity !== undefined) {
+		entity.toggleComponent(component.constructor.name)
+		let componentNode = document.querySelector("#"+component.constructor.name)
+		if(componentNode.className === "component") {
+			componentNode.className = "component disabled"
+		} else {
+			componentNode.className = "component"
+		}
 	}
 }
 

@@ -59,6 +59,10 @@ Entity.prototype.disableComponent = function disableComponent(name) {
 	this.enabledComponents[name] = false
 	return this
 }
+Entity.prototype.toggleComponent = function toggleComponent(name) {
+	this.enabledComponents[name] = !this.enabledComponents[name]
+	return this
+}
 
 Entity.prototype.has = function (componentName) {
 	if (this.enabledComponents[componentName] === undefined) return false
