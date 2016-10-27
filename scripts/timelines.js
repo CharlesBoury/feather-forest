@@ -150,7 +150,6 @@ var anims = {
 
 
 
-
 function stepTimeline(timeline, dt) {
 
 	// l'action la plus proche de la tete de lecture dans le passé
@@ -192,19 +191,6 @@ function resetTime(timeline, from) {
 	// also
 	cycle ++
 }
-
-
-
-function syncOutfitFromTimeline(entity) {
-	var outfit   = entity.components.Outfit
-	var timeline = entity.components.Timeline
-	outfit.imgName =
-		timeline.anims[timeline.currentAnim].properties
-			.filter(x => x.position <= timeline.time)
-			.pop()
-			.img
-}
-
 
 
 

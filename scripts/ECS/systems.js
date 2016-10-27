@@ -190,10 +190,19 @@ var systems = {
 	timeline: function(entity, dt) {
 
 		var timeline = entity.components.Timeline
-		var outfit   = entity.components.Outfit
 
 		if (timeline.play) stepTimeline(timeline, dt)
-		if (outfit !== undefined) syncOutfitFromTimeline(entity)
+	},
+
+	// a transformer pour que ca marche pour toutes les proprietes
+	syncOutfitFromTimeline: function(entity) {
+		var outfit   = entity.components.Outfit
+		var timeline = entity.components.Timeline
+		outfit.imgName =
+			timeline.anims[timeline.currentAnim].properties
+				.filter(x => x.position <= timeline.time)
+				.pop()
+				.img
 	},
 
 	cameraFollow: function(entity) {
@@ -227,15 +236,16 @@ var systems = {
 	},
 
 	neededComponents: {
-		userInput:                     ["Intentions"                                                        ],
-		setDeplacementsFromIntentions: ["Intentions", "Deplacements"                                        ],
-		moveMessage:                   [              "Deplacements","Position"                             ],
-		move:                          [              "Deplacements","Position"                             ],
-		collideMessage:                [                             "Position",          "Collider"        ],
-		replaceIfCollide:              [              "Deplacements","Position",          "Collider"        ],
-		setAnimFromDeplacements:       [              "Deplacements",           "Timeline"                  ],
-		timeline:                      [                                        "Timeline"                  ],
-		cameraFollow:                  [                             "Position",                    "Camera"],
+		userInput:                     ["Intentions"                                                                 ],
+		setDeplacementsFromIntentions: ["Intentions", "Deplacements"                                                 ],
+		moveMessage:                   [              "Deplacements","Position"                                      ],
+		move:                          [              "Deplacements","Position"                                      ],
+		collideMessage:                [                             "Position",          "Collider"                 ],
+		replaceIfCollide:              [              "Deplacements","Position",          "Collider"                 ],
+		setAnimFromDeplacements:       [              "Deplacements",           "Timeline"                           ],
+		timeline:                      [                                        "Timeline"                           ],
+		syncOutfitFromTimeline:        [                                        "Timeline",                  'Outfit'],
+		cameraFollow:                  [                             "Position",                    "Camera"         ],
 	},
 }
 
