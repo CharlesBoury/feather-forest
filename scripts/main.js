@@ -114,7 +114,7 @@ var app = new PLAYGROUND.Application({
 			if (entity.hasComponents("Outfit")) {
 			var image = this.images[outfit.imgName]
 
-				if (image !==undefined) {
+				if (image instanceof Node) {
 					// display its image with specified alpha
 					this.layer
 						.a(outfit.alpha)
