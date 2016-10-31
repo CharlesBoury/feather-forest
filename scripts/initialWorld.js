@@ -3,6 +3,9 @@ var initialWorld = []
 
 initialWorld.push(
 	new Entity()
+		.addComponent(new components.Name({
+			value: "Gabrielle"
+		}))
 		.addComponent(new components.Position({
 			x:600,
 			y:337
@@ -38,6 +41,9 @@ initialWorld.push(
 
 initialWorld.push(
 	new Entity()
+		.addComponent(new components.Name({
+			value: "WorldLimit Bottom"
+		}))
 		.addComponent(new components.Position({
 			x:0,
 			y:670
@@ -52,6 +58,9 @@ initialWorld.push(
 
 initialWorld.push(
 	new Entity()
+		.addComponent(new components.Name({
+			value: "WorldLimit Left"
+		}))
 		.addComponent(new components.Position({
 			x:0,
 			y:-675
@@ -66,6 +75,9 @@ initialWorld.push(
 
 initialWorld.push(
 	new Entity()
+		.addComponent(new components.Name({
+			value: "WorldLimit Top"
+		}))
 		.addComponent(new components.Position({
 			x:0,
 			y:-675
@@ -80,6 +92,9 @@ initialWorld.push(
 
 initialWorld.push(
 	new Entity()
+		.addComponent(new components.Name({
+			value: "WorldLimit Right"
+		}))
 		.addComponent(new components.Position({
 			x:2400,
 			y:-675
@@ -94,6 +109,9 @@ initialWorld.push(
 
 initialWorld.push(
 	new Entity()
+		.addComponent(new components.Name({
+			value: "Plantule"
+		}))
 		.addComponent(new components.Position({
 			x:760,
 			y:400
@@ -112,6 +130,9 @@ initialWorld.push(
 
 initialWorld.push(
 	new Entity()
+		.addComponent(new components.Name({
+			value: "Decors"
+		}))
 		.addComponent(new components.Position({
 			x:0,
 			y:0
@@ -125,6 +146,9 @@ initialWorld.push(
 
 initialWorld.push(
 	new Entity()
+		.addComponent(new components.Name({
+			value: "Decors"
+		}))
 	.addComponent(new components.Position({
 		x:1307,
 		y:-230
@@ -138,6 +162,9 @@ initialWorld.push(
 
 initialWorld.push(
 	new Entity()
+		.addComponent(new components.Name({
+			value: "Decors"
+		}))
 		.addComponent(new components.Position({
 			x:-81,
 			y:762
@@ -151,6 +178,9 @@ initialWorld.push(
 
 initialWorld.push(
 	new Entity()
+		.addComponent(new components.Name({
+			value: "Cam"
+		}))
 		.addComponent(new components.Position({
 			x:0,
 			y:0

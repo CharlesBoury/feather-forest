@@ -4,6 +4,18 @@
 // ET UN TYPE
 
 var components = {
+	Name: function Name(o) {
+		if (o === undefined) o = {}
+		this.value = o.value === undefined ? "" : o.value
+
+	this.meta = {
+		types: {
+			value: "string"
+		}
+	}
+	Object.defineProperty(this, "meta", {enumerable: false})
+	},
+
 	Position: function Position(o) {
 		if (o === undefined) o = {}
 

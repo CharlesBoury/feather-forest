@@ -59,7 +59,7 @@ function createEntitiesList(entities) {
 
 	entitiesListNode.innerHTML =
 		entities
-			.map(e => '<option>'+e.id+'</option>')
+			.map(e => `<option value="${e.id}">${e.components.Name !== undefined ? e.components.Name.value : e.id}</option>`)
 			.reduce((a, b) => a+b, '')
 
 	// set size
