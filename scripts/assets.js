@@ -53,5 +53,10 @@ var assets = [
 
 			"Decors/Foreground1",
 			"Decors/Foreground2",
-			"Decors/Foreground3"
+			"Decors/Foreground3",
+
+			"Decors/Plantule/01",
+			"Decors/Plantule/02",
+			"Decors/Plantule/03",
+			"Decors/Plantule/04"
 ]
