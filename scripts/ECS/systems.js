@@ -196,12 +196,45 @@ var systems = {
 
 			// step through time
 			timeline.time = timeline.time + dt * timeline.speed
+
+			// chercher l'action la plus proche de la tete de lecture dans le passé
+			let currentAction = 
+				timeline.anims[timeline.currentAnim].actions
+				.filter(x => x.position <= timeline.time)
+				.pop()				
+
+			if (currentAction !== undefined) {
+				if (currentAction.action === 'resetTime') {
+					// probleme : la tete de lecture ne tombe pas souvent
+					// pile-poil sur l'action donc on garde l'avancée
+					resetTime(timeline, currentAction.position)
+
+					function resetTime(timeline, from) {
+						timeline.time -= from
+					}
+				}
+			}
+
+			// putain de base 2 de merde
+			timeline.time = roundAtDigits(timeline.time, 3)
+		}
 	},
 
 	// a transformer pour que ca marche pour toutes les proprietes
 	syncOutfitFromTimeline: function(entity) {
 		var outfit   = entity.components.Outfit
 		var timeline = entity.components.Timeline
+
+		if (timeline.anims[timeline.currentAnim] !== undefined) {
+			let currentProperty =
+				timeline.anims[timeline.currentAnim].properties
+					.filter(x => x.position <= timeline.time)
+					.pop()
+			if (currentProperty !== undefined) {
+				outfit.imgName = currentProperty.img
+			}
+		}
+
 	},
 
 	cameraFollow: function(entity) {
