@@ -20,7 +20,7 @@ interface.string = {
 		function maybeSelected(opt) {return (value===opt)?'selected':''}
 
 		return	`<label for=${nodeID}>${propertyName}</label>`+
-				`<input id=${nodeID} type=text value=${value}>`
+				`<input id=${nodeID} type=text value="${value}">`
 	},
 
 	bindToInterface: (component, propertyName) => {
