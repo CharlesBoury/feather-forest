@@ -84,7 +84,7 @@ var components = {
 
 	Outfit: function Outfit(imgName, pivotX, pivotY, alpha) {
 
-		this.imgName = imgName === undefined ? 'Defaut/DefaultImg' : imgName
+		this.imgName = imgName === undefined ? 'DefaultImg' : imgName
 		this.pivotX  = pivotX  === undefined ? 0        : pivotX
 		this.pivotY  = pivotY  === undefined ? 0        : pivotY
 		this.alpha   = alpha   === undefined ? 1        : alpha

@@ -1,4 +1,6 @@
 var assets = [
+			"DefaultImg",
+
 			"Gabrielle/Bas",
 			"Gabrielle/BasDroite",
 			"Gabrielle/Droite",
@@ -48,8 +50,6 @@ var assets = [
 			"Gabrielle/BasGauche2",
 			"Gabrielle/BasGauche3",
 			"Gabrielle/BasGauche4",
-
-			"Defaut/DefaultImg",
 
 			"Decors/Foreground1",
 			"Decors/Foreground2",
