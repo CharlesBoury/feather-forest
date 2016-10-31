@@ -12,8 +12,8 @@ initialWorld.push(
 )
 
 initialWorld[0].components.Timeline.play = false
-initialWorld[0].components.Timeline.anims = anims
-initialWorld[0].components.Timeline.meta.options.currentAnim = Object.keys(anims)
+initialWorld[0].components.Timeline.anims = animsGabrielle
+initialWorld[0].components.Timeline.meta.options.currentAnim = Object.keys(animsGabrielle)
 initialWorld[0].components.Timeline.currentAnim = 'Bas'
 
 
