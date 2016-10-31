@@ -36,13 +36,7 @@ function stepTimeline(timeline, dt) {
 
 
 function resetTime(timeline, from) {
-	// s'il n'y a aucun argument (=appelé depuis le bouton interface)
-	if (timeline === undefined && from === undefined) {
-		// on cible specifiquement monEntite
-		monEntite.components.Timeline.time = 0	
-	}
-	else timeline.time -= from
-
+	timeline.time -= from
 	// also
 	cycle ++
 }
