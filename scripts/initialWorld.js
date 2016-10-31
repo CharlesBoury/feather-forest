@@ -31,6 +31,11 @@ initialWorld.push(
 )
 
 
+//------------------------------------------------------------------------
+//
+//  world limits
+//
+
 initialWorld.push(
 	new Entity()
 		.addComponent(new components.Position({
@@ -48,14 +53,42 @@ initialWorld.push(
 initialWorld.push(
 	new Entity()
 		.addComponent(new components.Position({
-			x:200,
-			y:300
+			x:0,
+			y:-675
+		}))
+		.addComponent(new components.Collider({
+			x: -5,
+			y: 0,
+			L: 10,
+			H: 1350
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Position({
+			x:0,
+			y:-675
 		}))
 		.addComponent(new components.Collider({
 			x: 0,
+			y: -5,
+			L: 2400,
+			H: 10
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Position({
+			x:2400,
+			y:-675
+		}))
+		.addComponent(new components.Collider({
+			x: -5,
 			y: 0,
-			L: 200,
-			H: 200
+			L: 10,
+			H: 1350
 		}))
 )
 
