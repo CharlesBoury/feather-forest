@@ -35,9 +35,6 @@ var app = new PLAYGROUND.Application({
 
 		entities  = initialWorld
 		monEntite = initialWorld[0]
-		// camera follow monEntite
-		let camera = entities.filter(x=>x.hasComponents('Camera'))[0]
-			camera.components.Camera.following = monEntite.id
 
 		screen = {
 			width:this.width,

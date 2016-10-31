@@ -122,5 +122,7 @@ initialWorld.push(
 			x:0,
 			y:0
 		}))
-		.addComponent(new components.Camera())
+		.addComponent(new components.Camera({
+			following: initialWorld[0].id
+		}))
 )
