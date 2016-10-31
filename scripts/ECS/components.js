@@ -188,8 +188,10 @@ var components = {
 	},
 
 
-	Intentions: function Intentions() {
-		this.cerveau = "manette"
+	Intentions: function Intentions(o) {
+		if (o === undefined) o = {}
+
+		this.cerveau    = o.cerveau === undefined ? "manette" : o.cerveau
 		this.horizontal = 0
 		this.vertical   = 0
 
