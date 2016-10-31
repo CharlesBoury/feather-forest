@@ -4,41 +4,41 @@
 // ET UN TYPE
 
 var components = {
-	Position: function Position(posX,posY) {
+	Position: function Position(o) {
+		if (o === undefined) o = {}
 
-		if (posX !== undefined && posY === undefined) {
-			console.error('Position component has only one argument, it needs 0 or 2')
-		} else {
-			this.x = posX || 0
-			this.y = posY || 0
+		this.x = o.x === undefined ? 0 : o.x
+		this.y = o.y === undefined ? 0 : o.y
 
-			this.meta = {
-				types: {
-					x: "number",
-					y: "number"
-				},
-				step: {
-					x: 1,
-					y: 1
-				}
+		this.meta = {
+			types: {
+				x: "number",
+				y: "number"
 			},
-			this.getScreenPos = function(cameraEntity) {
-				let cameraPosition = cameraEntity.components.Position
-				return {
-					x:this.x-cameraPosition.x,
-					y:this.y-cameraPosition.y
-				}
+			step: {
+				x: 1,
+				y: 1
 			}
-
-			Object.defineProperty(this, "getScreenPos", {enumerable: false})
-			Object.defineProperty(this, "meta", {enumerable: false})
+		},
+		this.getScreenPos = function(cameraEntity) {
+			let cameraPosition = cameraEntity.components.Position
+			return {
+				x: this.x - cameraPosition.x,
+				y: this.y - cameraPosition.y
+			}
 		}
+
+		Object.defineProperty(this, "getScreenPos", {enumerable: false})
+		Object.defineProperty(this, "meta", {enumerable: false})
 	},
 
 
-	Deplacements: function Deplacements(dir, vit) {
-		this.direction = dir === undefined ? 'Bas' : dir
-		this.vitesse   = vit === undefined ? 1     : vit
+	Deplacements: function Deplacements(o) {
+		if (o === undefined) o = {}
+
+		this.direction = o.direction === undefined ? 'Bas' : o.direction
+		this.vitesse   = o.vitesse   === undefined ? 1     : o.vitesse
+
 		this.bouge     = false
 		this.moveMessageX = 0
 		this.moveMessageY = 0
@@ -82,12 +82,13 @@ var components = {
 	},
 
 
-	Outfit: function Outfit(imgName, pivotX, pivotY, alpha) {
+	Outfit: function Outfit(o) {
+		if (o === undefined) o = {}
 
-		this.imgName = imgName === undefined ? 'DefaultImg' : imgName
-		this.pivotX  = pivotX  === undefined ? 0        : pivotX
-		this.pivotY  = pivotY  === undefined ? 0        : pivotY
-		this.alpha   = alpha   === undefined ? 1        : alpha
+		this.imgName = o.imgName === undefined ? 'DefaultImg' : o.imgName
+		this.pivotX  = o.pivotX  === undefined ? 0            : o.pivotX
+		this.pivotY  = o.pivotY  === undefined ? 0            : o.pivotY
+		this.alpha   = o.alpha   === undefined ? 1            : o.alpha
 
 		this.meta = {
 			types: {
@@ -116,21 +117,17 @@ var components = {
 	},
 
 
-	Timeline: function Timeline() {
-		this.currentAnim = "Defaut"
-		this.play = true
-		this.time = 0
-		this.speed = 1
-		this.anims = {
-			Defaut: {
-				properties:[],
-				actions:[],
-			},
-		}
+	Timeline: function Timeline(o) {
+		if (o === undefined) o = {}
+		this.currentAnim = o.currentAnim === undefined ? "Default"    : o.currentAnim
+		this.play        = o.play        === undefined ? false        : o.play
+		this.time        = o.time        === undefined ? 0            : o.time
+		this.speed       = o.speed       === undefined ? 1            : o.speed
+		this.anims       = o.anims       === undefined ? animsDefault : o.anims
 
 		this.meta = {
 			types: {
-				currentAnim : "select",
+				currentAnim : "string",
 				play: "checkbox",
 				time: "number",
 				speed: "slider"
@@ -145,21 +142,21 @@ var components = {
 			step: {
 				time: 0.001,
 				speed: 0.1
-			},
-			options: {
-				currentAnim: ['Defaut']
 			}
 		}
 		Object.defineProperty(this, "meta", {enumerable: false})
 	},
 
 
-	Collider: function Collider(x,y,L,H, canBePushed) {
-		this.x = x  === undefined ? 0   : x
-		this.y = y  === undefined ? 0   : y
-		this.L = L  === undefined ? 100 : L
-		this.H = H  === undefined ? 100 : H
-		this.canBePushed = canBePushed  === undefined ? false : canBePushed
+	Collider: function Collider(o) {
+		if (o === undefined) o = {}
+
+		this.x           = o.x            === undefined ? 0     : o.x
+		this.y           = o.y            === undefined ? 0     : o.y
+		this.L           = o.L            === undefined ? 100   : o.L
+		this.H           = o.H            === undefined ? 100   : o.H
+		this.canBePushed = o.canBePushed  === undefined ? false : o.canBePushed
+
 		this.collidedWith = []
 
 		this.meta = {
@@ -210,8 +207,10 @@ var components = {
 	},
 
 
-	Camera: function Camera(following) {
-		this.following = following  === undefined ? "" : following
+	Camera: function Camera(o) {
+		if (o === undefined) o = {}
+
+		this.following = o.following  === undefined ? "" : o.following
 		this.bgColor = "#586d65"
 		this.meta = {
 			types: {
