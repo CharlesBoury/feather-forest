@@ -187,22 +187,21 @@ var systems = {
 			timeline.play = false
 		}
 	},
-	timeline: function(entity, dt) {
 
+	timeline: function(entity, dt) {
 		var timeline = entity.components.Timeline
 
-		if (timeline.play) stepTimeline(timeline, dt)
+		// if currentAnim exists and is playing
+		if (timeline.play && timeline.anims[timeline.currentAnim] !== undefined) {
+
+			// step through time
+			timeline.time = timeline.time + dt * timeline.speed
 	},
 
 	// a transformer pour que ca marche pour toutes les proprietes
 	syncOutfitFromTimeline: function(entity) {
 		var outfit   = entity.components.Outfit
 		var timeline = entity.components.Timeline
-		outfit.imgName =
-			timeline.anims[timeline.currentAnim].properties
-				.filter(x => x.position <= timeline.time)
-				.pop()
-				.img
 	},
 
 	cameraFollow: function(entity) {

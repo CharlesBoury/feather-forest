@@ -1,48 +1,4 @@
 
-
-var cycle = 0
-var totalTime = 0
-
-
-
-function stepTimeline(timeline, dt) {
-
-	// l'action la plus proche de la tete de lecture dans le passé
-	var currentAction = 
-		timeline.anims[timeline.currentAnim].actions
-		.filter(x => x.position <= timeline.time)
-		.pop()
-
-	if (currentAction !== undefined) {
-		if (currentAction.action === 'resetTime') {
-			// probleme : la tete de lecture ne tombe pas souvent pile-poil sur l'action
-			// donc on garde l'avancée
-			var avancee = currentAction.position
-			resetTime(timeline, avancee)
-
-		}
-	}
-
-	timeline.time = timeline.time + dt * timeline.speed
-	totalTime     += dt * timeline.speed
-
-	// roundedError += roundAtDigits(timeline.time, 3) - timeline.time
-
-	// putain de base 2 de merde
-	timeline.time = roundAtDigits(timeline.time, 3)
-	totalTime     = roundAtDigits(totalTime,     3)
-}
-
-
-
-function resetTime(timeline, from) {
-	timeline.time -= from
-	// also
-	cycle ++
-}
-
-
-
 function drawTimeline(context, zoom, grille, time) {
 	var layer  = context.layer
 	var width  = context.width
