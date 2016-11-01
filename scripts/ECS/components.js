@@ -214,7 +214,7 @@ var components = {
 				vertical:   1,		
 			},
 			options: {
-				cerveau: ["manette", "rien"]
+				cerveau: ["manette", "blob", "rien"]
 			},
 		}
 		Object.defineProperty(this, "meta", {enumerable: false})

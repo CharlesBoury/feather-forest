@@ -33,6 +33,36 @@ initialWorld.push(
 		.addComponent(new components.Intentions())
 )
 
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "Blob"
+		}))
+		.addComponent(new components.Position({
+			x:500,
+			y:400
+		}))
+		.addComponent(new components.Deplacements({
+			vitesse: 300
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Monstres/Blob',
+			pivotX:  0.5,
+			pivotY:  0.9
+		}))
+		.addComponent(new components.Collider({
+			x: -33,
+			y: -39,
+			L:  67,
+			H:  49,
+			canBePushed: true
+		}))
+		.addComponent(new components.Intentions({
+			cerveau: "blob"
+		}))
+)
+
+
 
 //------------------------------------------------------------------------
 //

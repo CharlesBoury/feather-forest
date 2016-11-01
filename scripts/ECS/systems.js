@@ -28,6 +28,14 @@ var systems = {
 
 	},
 
+	blobInput: function(entity, keys) {
+		// should have
+		var intentions = entity.components.Intentions
+
+		if (intentions.cerveau === "blob") {
+		}
+	},
+
 	setDeplacementsFromIntentions: function(entity) {
 
 		// should have
@@ -270,6 +278,7 @@ var systems = {
 
 	neededComponents: {
 		userInput:                     ["Intentions"                                                                 ],
+		blobInput:                     ["Intentions"                                                                 ],
 		setDeplacementsFromIntentions: ["Intentions", "Deplacements"                                                 ],
 		moveMessage:                   [              "Deplacements","Position"                                      ],
 		move:                          [              "Deplacements","Position"                                      ],
