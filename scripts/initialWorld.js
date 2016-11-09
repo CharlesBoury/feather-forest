@@ -149,7 +149,7 @@ initialWorld.push(
 			y:400
 		}))
 		.addComponent(new components.Outfit({
-			imgName: 'Decors/Plantule/01',
+			imgName: 'Decors/Props/Plantule/01',
 			pivotX:  0.4,
 			pivotY:  0.98,
 			layer:   0
