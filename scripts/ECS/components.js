@@ -101,28 +101,33 @@ var components = {
 		this.pivotX  = o.pivotX  === undefined ? 0            : o.pivotX
 		this.pivotY  = o.pivotY  === undefined ? 0            : o.pivotY
 		this.alpha   = o.alpha   === undefined ? 1            : o.alpha
+		this.layer   = o.layer   === undefined ? 0            : o.layer
 
 		this.meta = {
 			types: {
 				imgName: "string",
 				pivotX:  "slider",
 				pivotY:  "slider",
-				alpha:   "slider"
+				alpha:   "slider",
+				layer:   "slider"
 			},
 			min: {
 				pivotX:  0,
 				pivotY:  0,
-				alpha:   0
+				alpha:   0,
+				layer:   -1
 			},
 			max: {
 				pivotX:  1,
 				pivotY:  1,
-				alpha:   1
+				alpha:   1,
+				layer:   1
 			},
 			step: {
 				pivotX:  0.01,
 				pivotY:  0.01,
-				alpha:   0.01
+				alpha:   0.01,
+				layer:   1
 			}
 		}
 		Object.defineProperty(this, "meta", {enumerable: false})
@@ -224,8 +229,8 @@ var components = {
 	Camera: function Camera(o) {
 		if (o === undefined) o = {}
 
-		this.following = o.following  === undefined ? "" : o.following
-		this.bgColor = "#586d65"
+		this.following = o.following  === undefined ? ""        : o.following
+		this.bgColor   = o.bgColor    === undefined ? "#586D65" : o.bgColor
 		this.meta = {
 			types: {
 				following: "string",
@@ -234,4 +239,11 @@ var components = {
 		}
 		Object.defineProperty(this, "meta", {enumerable: false})
 	}
+}
+
+
+function getLayersNumber(entitiesList) {
+	let max = entitiesList.filter(x=>x.hasComponents("Outfit"))[0].components.Outfit.meta.max.layer
+	let min = entitiesList.filter(x=>x.hasComponents("Outfit"))[0].components.Outfit.meta.min.layer
+	return max - min + 1 // +1 is for the layer 0
 }

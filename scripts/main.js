@@ -78,8 +78,6 @@ var app = new PLAYGROUND.Application({
 		//    need an entity with camera and position
 		//    each Entity needs position
 
-
-
 		let camera = entities.filter(x=>x.hasComponents('Camera'))[0]
 		if (camera === undefined) {
 			this.layer
@@ -99,20 +97,45 @@ var app = new PLAYGROUND.Application({
 		}
 		this.layer.clear(camera.components.Camera.bgColor)
 
-		for (var i = 0; i < entities.length; i++) {
-		let entity = entities[i]
-		if (entity.hasComponents("Position")) {
-			//////////////////////////////////////////////////////////////////////////////
 
-			var position = entity.components.Position
-			var outfit   = entity.components.Outfit
+		//------------------------------------------------------------------------
+		//
+		//  Game layer
+		//
 
-			// if entity has outfit
-			if (entity.hasComponents("Outfit")) {
-			var image = this.images[outfit.imgName]
+		let orderedDisplayableEntities = []
+		/* [
+			[entities on layer 1],
+			[entities on layer 2],
+			[entities on layer 3],
+			etc...
+		] */
+		let displayableEntities = entities.filter(x=>x.hasComponents("Position", "Outfit"))
+		let minLayer = displayableEntities[0].components.Outfit.meta.min.layer
+		let currentLayer = minLayer
+		for (var i = 0; i < getLayersNumber(entities); i++) {
+			orderedDisplayableEntities[i] = displayableEntities.filter(x=>x.components.Outfit.layer === currentLayer)
+			currentLayer ++
+		}
+		for (var i = 0; i < orderedDisplayableEntities.length; i++) {
+			orderedDisplayableEntities[i].sort(
+				function(a,b){
+					if      (a.components.Position.y < b.components.Position.y) return -1
+					else if (a.components.Position.y > b.components.Position.y) return 1
+					else return 0
+				}
+			)
+		}
 
+		for (eachLayer of orderedDisplayableEntities) {
+			for(entity of eachLayer) {
+			// loop to draw entities based on its layer
+
+				let position = entity.components.Position
+				let outfit   = entity.components.Outfit
+
+				let image = this.images[outfit.imgName]
 				if (image instanceof Node) {
-					// display its image with specified alpha
 					this.layer
 						.a(outfit.alpha)
 						.align(outfit.pivotX, outfit.pivotY)
@@ -122,8 +145,6 @@ var app = new PLAYGROUND.Application({
 							position.getScreenPos(camera).y)
 						.ra() // restore alpha, hopefully 1
 						.realign()
-
-					// display image box
 					if (entity.id === selectedEntityID) {
 						this.layer
 							.strokeStyle("rgba(0,0,255,0.3)")
@@ -139,17 +160,36 @@ var app = new PLAYGROUND.Application({
 						.fillText("imgName introuvable", position.getScreenPos(camera).x,position.getScreenPos(camera).y)
 				}
 			}
+		}
 
-			// display collider
-			if (entity.hasComponents("Collider")) {
-				let collider = entity.components.Collider
-				this.layer
-					.strokeStyle("darkred")
-					.strokeRect(position.getScreenPos(camera).x+collider.x, position.getScreenPos(camera).y+collider.y, collider.L, collider.H)
-			}
 
-			// display pivot for selected entity
+		//------------------------------------------------------------------------
+		//
+		//  Display colliders
+		//
+
+		for(entity of entities.filter(x=>x.hasComponents("Position", "Collider"))) {
+			let position = entity.components.Position
+			let collider = entity.components.Collider
+			this.layer
+				.strokeStyle("darkred")
+				.strokeRect(
+					position.getScreenPos(camera).x+collider.x, 
+					position.getScreenPos(camera).y+collider.y, 
+					collider.L, 
+					collider.H)
+		}
+
+
+		//------------------------------------------------------------------------
+		//
+		//  Display pivot for selected entity
+		//
+
+		for(entity of entities.filter(x=>x.hasComponents("Position"))) {
+
 			if (entity.id === selectedEntityID) {
+				let position = entity.components.Position
 				this.layer
 					.fillStyle("blue")
 					.a(0.5)
@@ -159,11 +199,7 @@ var app = new PLAYGROUND.Application({
 						10)
 					.ra()
 			}
-			//////////////////////////////////////////////////////////////////////////////
 		}
-		}
-
-
 
 
 

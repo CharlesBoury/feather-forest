@@ -16,7 +16,8 @@ initialWorld.push(
 		.addComponent(new components.Outfit({
 			imgName: 'Gabrielle/Bas1',
 			pivotX:  0.5,
-			pivotY:  0.9
+			pivotY:  0.9,
+			layer:   0
 		}))
 		.addComponent(new components.Timeline({
 			play: false,
@@ -42,24 +43,25 @@ initialWorld.push(
 			x:500,
 			y:400
 		}))
-		.addComponent(new components.Deplacements({
-			vitesse: 300
-		}))
+		// .addComponent(new components.Deplacements({
+		// 	vitesse: 300
+		// }))
 		.addComponent(new components.Outfit({
 			imgName: 'Monstres/Blob',
 			pivotX:  0.5,
-			pivotY:  0.9
+			pivotY:  0.9,
+			layer:   0
 		}))
-		.addComponent(new components.Collider({
-			x: -33,
-			y: -39,
-			L:  67,
-			H:  49,
-			canBePushed: true
-		}))
-		.addComponent(new components.Intentions({
-			cerveau: "blob"
-		}))
+		// .addComponent(new components.Collider({
+		// 	x: -33,
+		// 	y: -39,
+		// 	L:  67,
+		// 	H:  49,
+		// 	canBePushed: true
+		// }))
+		// .addComponent(new components.Intentions({
+		// 	cerveau: "blob"
+		// }))
 )
 
 
@@ -149,7 +151,8 @@ initialWorld.push(
 		.addComponent(new components.Outfit({
 			imgName: 'Decors/Plantule/01',
 			pivotX:  0.4,
-			pivotY:  0.98
+			pivotY:  0.98,
+			layer:   0
 		}))
 		.addComponent(new components.Timeline({
 				play: true,
@@ -157,6 +160,50 @@ initialWorld.push(
 				anims: animsPlantule,
 		}))
 )
+
+//------------------------------------------------------------------------
+//
+//  background
+//
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "Fond1"
+		}))
+		.addComponent(new components.Position({
+			x:555,
+			y:215
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/Background1',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "Fond2"
+		}))
+		.addComponent(new components.Position({
+			x:140,
+			y:430
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/Background1',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+//------------------------------------------------------------------------
+//
+//  foreground
+//
 
 initialWorld.push(
 	new Entity()
@@ -170,7 +217,8 @@ initialWorld.push(
 		.addComponent(new components.Outfit({
 			imgName: 'Decors/Foreground3',
 			pivotX:  0,
-			pivotY:  0
+			pivotY:  0,
+			layer:   1
 		}))
 )
 
@@ -186,7 +234,8 @@ initialWorld.push(
 		.addComponent(new components.Outfit({
 			imgName: 'Decors/Foreground1',
 			pivotX:  1,
-			pivotY:  0
+			pivotY:  0,
+			layer:   1
 		}))
 )
 
@@ -202,7 +251,8 @@ initialWorld.push(
 		.addComponent(new components.Outfit({
 			imgName: 'Decors/Foreground2',
 			pivotX:  0,
-			pivotY:  1
+			pivotY:  1,
+			layer:   1
 		}))
 )
 
@@ -216,6 +266,7 @@ initialWorld.push(
 			y:0
 		}))
 		.addComponent(new components.Camera({
-			following: initialWorld[0].id
+			following: initialWorld[0].id,
+			bgColor:   "#2f4b2b"
 		}))
 )

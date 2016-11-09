@@ -53,6 +53,8 @@ var assets = [
 
 			"Monstres/Blob",
 
+			"Decors/Background1",
+
 			"Decors/Foreground1",
 			"Decors/Foreground2",
 			"Decors/Foreground3",
