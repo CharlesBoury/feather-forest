@@ -11,7 +11,7 @@ initialWorld.push(
 			y:337
 		}))
 		.addComponent(new components.Deplacements({
-			vitesse: 600
+			vitesse: 380
 		}))
 		.addComponent(new components.Outfit({
 			imgName: 'Gabrielle/Bas1',
@@ -25,10 +25,10 @@ initialWorld.push(
 			currentAnim: 'Bas'
 		}))
 		.addComponent(new components.Collider({
-			x: -50,
-			y: -30,
-			L: 100,
-			H: 60,
+			x: -25,
+			y: -13,
+			L: 50,
+			H: 26,
 			canBePushed: true
 		}))
 		.addComponent(new components.Intentions())
