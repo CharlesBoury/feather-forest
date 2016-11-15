@@ -117,15 +117,15 @@ var app = new PLAYGROUND.Application({
 			orderedDisplayableEntities[i] = displayableEntities.filter(x=>x.components.Outfit.layer === currentLayer)
 			currentLayer ++
 		}
-		for (var i = 0; i < orderedDisplayableEntities.length; i++) {
-			orderedDisplayableEntities[i].sort(
-				function(a,b){
-					if      (a.components.Position.y < b.components.Position.y) return -1
-					else if (a.components.Position.y > b.components.Position.y) return 1
-					else return 0
-				}
-			)
-		}
+
+		// sort the "0" layer by Position.y
+		orderedDisplayableEntities[1].sort(
+			function(a,b){
+				if      (a.components.Position.y < b.components.Position.y) return -1
+				else if (a.components.Position.y > b.components.Position.y) return 1
+				else return 0
+			}
+		)
 
 		for (eachLayer of orderedDisplayableEntities) {
 			for(entity of eachLayer) {
