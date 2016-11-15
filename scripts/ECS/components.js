@@ -121,7 +121,7 @@ var components = {
 				pivotX:  1,
 				pivotY:  1,
 				alpha:   1,
-				layer:   1
+				layer:   2
 			},
 			step: {
 				pivotX:  0.01,
