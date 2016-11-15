@@ -63,7 +63,7 @@ function createEntitiesList(entities) {
 			.reduce((a, b) => a+b, '')
 
 	// set size
-	entitiesListNode.setAttribute('size', Math.max(entities.length,2))
+	entitiesListNode.setAttribute('size', Math.min(Math.max(entities.length,2), 17))
 	// attach event to open Inspector
 	entitiesListNode.addEventListener('input', function(e) {
 		deleteInspector()
