@@ -661,7 +661,7 @@ initialWorld.push(
 initialWorld.push(
 	new Entity()
 		.addComponent(new components.Name({
-			value: "Fond1"
+			value: "Brocoli"
 		}))
 		.addComponent(new components.Position({
 			x:555,
