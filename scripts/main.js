@@ -157,11 +157,13 @@ var app = new PLAYGROUND.Application({
 					this.layer
 						.a(outfit.alpha)
 						.align(outfit.pivotX, outfit.pivotY)
+						.globalCompositeOperation(outfit.blendMode)
 						.drawImage(
 							image,
 							position.getScreenPos(camera).x,
 							position.getScreenPos(camera).y)
 						.ra() // restore alpha, hopefully 1
+						.globalCompositeOperation("source-over")
 						.realign()
 					if (entity.id === selectedEntityID) {
 						this.layer

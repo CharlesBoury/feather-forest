@@ -98,9 +98,10 @@ var components = {
 		if (o === undefined) o = {}
 
 		this.imgName = o.imgName === undefined ? 'DefaultImg' : o.imgName
+		this.blendMode = o.blendMode === undefined ? 'normal' : o.blendMode
+		this.alpha   = o.alpha   === undefined ? 1            : o.alpha
 		this.pivotX  = o.pivotX  === undefined ? 0            : o.pivotX
 		this.pivotY  = o.pivotY  === undefined ? 0            : o.pivotY
-		this.alpha   = o.alpha   === undefined ? 1            : o.alpha
 		this.layer   = o.layer   === undefined ? 0            : o.layer
 
 		this.meta = {
@@ -109,7 +110,8 @@ var components = {
 				pivotX:  "slider",
 				pivotY:  "slider",
 				alpha:   "slider",
-				layer:   "slider"
+				layer:   "slider",
+				blendMode: "select"
 			},
 			min: {
 				pivotX:  0,
@@ -128,6 +130,20 @@ var components = {
 				pivotY:  0.01,
 				alpha:   0.01,
 				layer:   1
+			},
+			options:{
+				blendMode:[
+					'normal', // aka source-over
+					//"-------",
+					'darken',  'multiply', 'color-burn',
+					//"-------",
+					'lighten', 'screen',   'color-dodge', 'lighter',
+					//"-------",
+					'overlay', 'soft-light', 'hard-light',
+					//"-------",
+					'difference', 'exclusion',
+					//"-------",
+					'hue', 'saturation', 'color', 'luminosity']
 			}
 		}
 		Object.defineProperty(this, "meta", {enumerable: false})
