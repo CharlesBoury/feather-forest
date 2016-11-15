@@ -691,9 +691,7 @@ initialWorld.push(
 		}))
 		.addComponent(new components.Outfit({
 			imgName: 'Decors/Rays',
-			pivotX:  0,
-			pivotY:  0,
-			alpha:   0.3,
+			blendMode: 'overlay',
 			layer:   1
 		}))
 )
