@@ -3,6 +3,7 @@ let entities = []
 var monEntite
 var selectedEntityID
 let screen
+let mouseDrag = false
 
 
 function getEntityWithID(id, list) {
@@ -45,6 +46,23 @@ var app = new PLAYGROUND.Application({
 		createSystemsList(systems)
 		createComponentsList(components)
 		selectedEntityID = monEntite.id // creates Inspector
+	},
+	mousedown: function(event) {
+		mouseDrag = true
+	},
+
+	mouseup: function() {
+		mouseDrag = false
+	},
+
+	mousemove: function(event) {
+		if (mouseDrag) {
+			let entity = getSelectedEntity()
+			if (entity === undefined) return
+
+			entity.components.Position.x += event.original.movementX
+			entity.components.Position.y += event.original.movementY
+		}
 	},
 
 	step: function(dt) { // dt est en secondes (généralement = 0.016)
