@@ -33,7 +33,7 @@ initialWorld.push(
 		}))
 		.addComponent(new components.Intentions())
 )
-
+/*
 initialWorld.push(
 	new Entity()
 		.addComponent(new components.Name({
@@ -43,27 +43,27 @@ initialWorld.push(
 			x:500,
 			y:400
 		}))
-		// .addComponent(new components.Deplacements({
-		// 	vitesse: 300
-		// }))
+		.addComponent(new components.Deplacements({
+			vitesse: 300
+		}))
 		.addComponent(new components.Outfit({
 			imgName: 'Monstres/Blob',
 			pivotX:  0.5,
 			pivotY:  0.9,
 			layer:   0
 		}))
-		// .addComponent(new components.Collider({
-		// 	x: -33,
-		// 	y: -39,
-		// 	L:  67,
-		// 	H:  49,
-		// 	canBePushed: true
-		// }))
-		// .addComponent(new components.Intentions({
-		// 	cerveau: "blob"
-		// }))
+		.addComponent(new components.Collider({
+			x: -33,
+			y: -39,
+			L:  67,
+			H:  49,
+			canBePushed: true
+		}))
+		.addComponent(new components.Intentions({
+			cerveau: "blob"
+		}))
 )
-
+*/
 
 
 //------------------------------------------------------------------------
@@ -169,14 +169,14 @@ initialWorld.push(
 initialWorld.push(
 	new Entity()
 		.addComponent(new components.Name({
-			value: "Fond1"
+			value: "TacheFonce"
 		}))
 		.addComponent(new components.Position({
-			x:555,
-			y:215
+			x:220,
+			y:300
 		}))
 		.addComponent(new components.Outfit({
-			imgName: 'Decors/Background1',
+			imgName: 'Decors/TacheFonce',
 			pivotX:  0,
 			pivotY:  0,
 			layer:   -1
@@ -186,14 +186,489 @@ initialWorld.push(
 initialWorld.push(
 	new Entity()
 		.addComponent(new components.Name({
-			value: "Fond2"
+			value: "TacheFonce"
+		}))
+		.addComponent(new components.Position({
+			x:660,
+			y:220
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/TacheFonce',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "TacheFonce"
+		}))
+		.addComponent(new components.Position({
+			x:820,
+			y:220
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/TacheFonce',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "TacheFonce"
+		}))
+		.addComponent(new components.Position({
+			x:860,
+			y:240
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/TacheFonce',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+//------------------------------------------------
+
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "TacheMarron"
+		}))
+		.addComponent(new components.Position({
+			x:257,
+			y:175
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/TacheMarron',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "TacheMarron"
+		}))
+		.addComponent(new components.Position({
+			x:550,
+			y:427
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/TacheMarron',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "TacheMarron"
 		}))
 		.addComponent(new components.Position({
 			x:140,
-			y:430
+			y:-250
 		}))
 		.addComponent(new components.Outfit({
-			imgName: 'Decors/Background1',
+			imgName: 'Decors/TacheMarron',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+//------------------------------------------------
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "TacheBleue"
+		}))
+		.addComponent(new components.Position({
+			x:323,
+			y:277
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/TacheBleue1',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "TacheBleue"
+		}))
+		.addComponent(new components.Position({
+			x:913,
+			y:158
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/TacheBleue2',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "TacheBleue"
+		}))
+		.addComponent(new components.Position({
+			x:782,
+			y:479
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/TacheBleue3',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+//------------------------------------------------
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "Gazon"
+		}))
+		.addComponent(new components.Position({
+			x:28,
+			y:300
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/Gazon1',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "Gazon"
+		}))
+		.addComponent(new components.Position({
+			x:415,
+			y:38
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/Gazon1',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "Gazon"
+		}))
+		.addComponent(new components.Position({
+			x:611,
+			y:90
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/Gazon1',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "Gazon"
+		}))
+		.addComponent(new components.Position({
+			x:954,
+			y:-90
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/Gazon1',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "Gazon"
+		}))
+		.addComponent(new components.Position({
+			x:200,
+			y:368
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/Gazon2',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "TacheOrange"
+		}))
+		.addComponent(new components.Position({
+			x:924,
+			y:190
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/TacheOrange1',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "Gazon"
+		}))
+		.addComponent(new components.Position({
+			x:780,
+			y:506
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/Gazon2',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "Gazon"
+		}))
+		.addComponent(new components.Position({
+			x:906,
+			y:150
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/Gazon2',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "Gazon"
+		}))
+		.addComponent(new components.Position({
+			x:1023,
+			y:354
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/Gazon2',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "TacheOrange"
+		}))
+		.addComponent(new components.Position({
+			x:446,
+			y:376
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/TacheOrange2',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+//------------------------------------------------
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "TacheViolette"
+		}))
+		.addComponent(new components.Position({
+			x:465,
+			y:300
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/TacheViolette1',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "TacheViolette"
+		}))
+		.addComponent(new components.Position({
+			x:618,
+			y:404
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/TacheViolette2',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "TacheViolette"
+		}))
+		.addComponent(new components.Position({
+			x:276,
+			y:542
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/TacheViolette3',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+//------------------------------------------------
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "TacheOrange"
+		}))
+		.addComponent(new components.Position({
+			x:661,
+			y:421
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/TacheOrange3',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "TacheOrange"
+		}))
+		.addComponent(new components.Position({
+			x:108,
+			y:275
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/TacheOrange4',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "TacheOrange"
+		}))
+		.addComponent(new components.Position({
+			x:585,
+			y:235
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/TacheOrange5',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+//------------------------------------------------
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "TacheVerte"
+		}))
+		.addComponent(new components.Position({
+			x:658,
+			y:167
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/TacheVerte1',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "TacheVerte"
+		}))
+		.addComponent(new components.Position({
+			x:308,
+			y:316
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/TacheVerte2',
+			pivotX:  0,
+			pivotY:  0,
+			layer:   -1
+		}))
+)
+
+//------------------------------------------------
+
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "Fond1"
+		}))
+		.addComponent(new components.Position({
+			x:555,
+			y:215
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/Brocoli',
 			pivotX:  0,
 			pivotY:  0,
 			layer:   -1
@@ -208,7 +683,25 @@ initialWorld.push(
 initialWorld.push(
 	new Entity()
 		.addComponent(new components.Name({
-			value: "Decors"
+			value: "Rays"
+		}))
+		.addComponent(new components.Position({
+			x:0,
+			y:0
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/Rays',
+			pivotX:  0,
+			pivotY:  0,
+			alpha:   0.3,
+			layer:   1
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "Foreground"
 		}))
 		.addComponent(new components.Position({
 			x:0,
@@ -218,14 +711,14 @@ initialWorld.push(
 			imgName: 'Decors/Foreground3',
 			pivotX:  0,
 			pivotY:  0,
-			layer:   1
+			layer:   2
 		}))
 )
 
 initialWorld.push(
 	new Entity()
 		.addComponent(new components.Name({
-			value: "Decors"
+			value: "Foreground"
 		}))
 	.addComponent(new components.Position({
 		x:1307,
@@ -235,14 +728,14 @@ initialWorld.push(
 			imgName: 'Decors/Foreground1',
 			pivotX:  1,
 			pivotY:  0,
-			layer:   1
+			layer:   2
 		}))
 )
 
 initialWorld.push(
 	new Entity()
 		.addComponent(new components.Name({
-			value: "Decors"
+			value: "Foreground"
 		}))
 		.addComponent(new components.Position({
 			x:-81,
@@ -252,14 +745,36 @@ initialWorld.push(
 			imgName: 'Decors/Foreground2',
 			pivotX:  0,
 			pivotY:  1,
-			layer:   1
+			layer:   2
 		}))
 )
 
 initialWorld.push(
 	new Entity()
 		.addComponent(new components.Name({
-			value: "Cam"
+			value: "Foreground"
+		}))
+		.addComponent(new components.Position({
+			x:0,
+			y:675
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/Foreground4',
+			pivotX:  0,
+			pivotY:  1,
+			layer:   2
+		}))
+)
+
+//------------------------------------------------------------------------
+//
+//  Camera
+//
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "Camera"
 		}))
 		.addComponent(new components.Position({
 			x:0,
@@ -270,3 +785,5 @@ initialWorld.push(
 			bgColor:   "#2f4b2b"
 		}))
 )
+
+
