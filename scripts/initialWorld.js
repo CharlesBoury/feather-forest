@@ -655,26 +655,6 @@ initialWorld.push(
 		}))
 )
 
-//------------------------------------------------
-
-
-initialWorld.push(
-	new Entity()
-		.addComponent(new components.Name({
-			value: "Brocoli"
-		}))
-		.addComponent(new components.Position({
-			x:555,
-			y:215
-		}))
-		.addComponent(new components.Outfit({
-			imgName: 'Decors/Brocoli',
-			pivotX:  0,
-			pivotY:  0,
-			layer:   -1
-		}))
-)
-
 //------------------------------------------------------------------------
 //
 //  foreground
@@ -691,6 +671,23 @@ initialWorld.push(
 		}))
 		.addComponent(new components.Outfit({
 			imgName: 'Decors/Rays',
+			blendMode: 'hard-light',
+			alpha: 0.43,
+			layer:   1
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "Beam"
+		}))
+		.addComponent(new components.Position({
+			x:0,
+			y:0
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/Beam',
 			blendMode: 'overlay',
 			layer:   1
 		}))
@@ -703,7 +700,7 @@ initialWorld.push(
 		}))
 		.addComponent(new components.Position({
 			x:0,
-			y:0
+			y:-261
 		}))
 		.addComponent(new components.Outfit({
 			imgName: 'Decors/Foreground3',
@@ -719,8 +716,8 @@ initialWorld.push(
 			value: "Foreground"
 		}))
 	.addComponent(new components.Position({
-		x:1307,
-		y:-230
+		x:1351,
+		y:-388
 	}))
 		.addComponent(new components.Outfit({
 			imgName: 'Decors/Foreground1',
@@ -760,6 +757,22 @@ initialWorld.push(
 			imgName: 'Decors/Foreground4',
 			pivotX:  0,
 			pivotY:  1,
+			layer:   2
+		}))
+)
+
+initialWorld.push(
+	new Entity()
+		.addComponent(new components.Name({
+			value: "Vignette"
+		}))
+		.addComponent(new components.Position({
+			x:0,
+			y:0
+		}))
+		.addComponent(new components.Outfit({
+			imgName: 'Decors/Vignette',
+			blendMode: 'normal',
 			layer:   2
 		}))
 )

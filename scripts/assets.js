@@ -67,7 +67,10 @@ var assets = [
 			//  Decors
 			//
 
+			"Decors/Vignette",
+
 			"Decors/Rays",
+			"Decors/Beam",
 			"Decors/Foreground1",
 			"Decors/Foreground2",
 			"Decors/Foreground3",
