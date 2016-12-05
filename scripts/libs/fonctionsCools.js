@@ -9,6 +9,14 @@ function nombresApresLaVirgule(number) {
 	}
 }
 
+Number.prototype.pad = function(size) {
+	//	68 .pad(5) = 00068
+	// ne marche pas pour les nombres à virgule ou négatifs
+	let s = String(this);
+	while (s.length < (size || 2)) {s = "0" + s;}
+	return s;
+}
+
 
 function roundAtDigits (number, digitNumber) {
 	var base = Math.pow(10, digitNumber)
@@ -27,6 +35,13 @@ function combinaisons(f, list) {
 		saut++
 	}
 	return result
+}
+
+
+function getRandomIntInclusive(min, max) {
+	min = Math.ceil(min);
+	max = Math.floor(max);
+	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 
